@@ -107,56 +107,57 @@ export default function ChatPage() {
     }
 
     return (
-        <main className="min-h-screen bg-[#0C0806] text-[#F5E6D3] font-sans overflow-hidden relative selection:bg-[#D4AF37] selection:text-black">
+    return (
+        <main className="flex flex-col h-[100dvh] bg-[#0C0806] text-[#F5E6D3] font-sans overflow-hidden relative selection:bg-[#D4AF37] selection:text-black">
             {/* Background - Sanctum Atmosphere */}
-            <div className="fixed inset-0 z-0">
+            <div className="absolute inset-0 z-0">
                 <CinematicTemple mode="seated" />
             </div>
 
             {/* Header - Jewel Box */}
-            <header className="fixed top-0 left-0 right-0 z-50 px-6 py-6 flex items-center justify-between pointer-events-auto">
-                <Link href="/" className="flex items-center gap-2 text-[#D4AF37] hover:text-white transition-colors group glass-panel rounded-full px-4 py-2">
-                    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                    <span className="font-serif text-lg tracking-tight">Return to Temple</span>
+            <header className="flex-none z-50 px-4 py-4 md:px-6 md:py-6 flex items-center justify-between pointer-events-auto bg-gradient-to-b from-[#0C0806]/80 to-transparent">
+                <Link href="/" className="flex items-center gap-2 text-[#D4AF37] hover:text-white transition-colors group glass-panel rounded-full px-3 py-1.5 md:px-4 md:py-2">
+                    <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
+                    <span className="font-serif text-sm md:text-lg tracking-tight">Return</span>
                 </Link>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                     {/* Pandit Name Badge */}
                     {pandit && (
-                        <div className="hidden md:flex flex-col items-end mr-2">
-                            <span className="text-[#D4AF37] font-serif text-lg leading-none">{pandit.name}</span>
-                            <span className="text-white/50 text-xs uppercase tracking-widest">{pandit.specialization.split(',')[0]}</span>
+                        <div className="flex flex-col items-end mr-1">
+                            <span className="text-[#D4AF37] font-serif text-base md:text-lg leading-none">{pandit.name}</span>
+                            <span className="text-white/50 text-[10px] md:text-xs uppercase tracking-widest">{pandit.specialization.split(',')[0]}</span>
                         </div>
                     )}
 
                     <button
                         onClick={() => setAudioEnabled(!audioEnabled)}
-                        className="w-10 h-10 rounded-full flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37]/10 glass-panel transition-all"
+                        className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37]/10 glass-panel transition-all"
                     >
-                        {audioEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                        {audioEnabled ? <Volume2 className="w-3 h-3 md:w-4 md:h-4" /> : <VolumeX className="w-3 h-3 md:w-4 md:h-4" />}
                     </button>
                 </div>
             </header>
 
-            {/* Chat Area - Parchment Scrolls */}
-            <div className="relative z-20 container mx-auto h-screen flex flex-col pt-24 pb-32 px-4 md:px-0 max-w-3xl pointer-events-none">
-                <div className="flex-1 overflow-y-auto scrollbar-hide pointer-events-auto space-y-8 px-4">
+            {/* Chat Area - Scrollable */}
+            <div className="flex-1 overflow-y-auto scrollbar-hide z-10 px-4 md:px-0 w-full max-w-3xl mx-auto flex flex-col">
+                <div className="flex-1 space-y-6 py-6">
                     <AnimatePresence mode="popLayout">
                         {messages.map((msg, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
                                 <div
                                     className={`
-                    max-w-[85%] p-6 rounded-2xl text-lg leading-relaxed shadow-lg backdrop-blur-md border
-                    ${msg.role === 'user'
+                                        max-w-[85%] md:max-w-[75%] p-4 md:p-6 rounded-2xl text-base md:text-lg leading-relaxed shadow-lg backdrop-blur-md border
+                                        ${msg.role === 'user'
                                             ? 'bg-[#D4AF37]/10 border-[#D4AF37]/30 text-white rounded-tr-sm'
                                             : 'bg-[#1A0F0D]/60 border-[#D4AF37]/10 text-[#FFE5A0] font-serif rounded-tl-sm'
                                         }
-                  `}
+                                    `}
                                 >
                                     {msg.role === 'assistant' && (
                                         <div className="flex items-center gap-2 mb-2 opacity-50">
@@ -164,7 +165,7 @@ export default function ChatPage() {
                                             <span className="text-[10px] uppercase tracking-widest text-[#D4AF37]">Vedic Insight</span>
                                         </div>
                                     )}
-                                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                                    <p className="whitespace-pre-wrap break-words">{msg.content}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -181,14 +182,14 @@ export default function ChatPage() {
                             </motion.div>
                         )}
                     </AnimatePresence>
-                    <div ref={messagesEndRef} />
+                    <div ref={messagesEndRef} className="h-4" />
                 </div>
             </div>
 
-            {/* Input Area - Golden Vessel */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-auto pb-10 pt-20 bg-gradient-to-t from-[#0C0806] via-[#0C0806] to-transparent">
-                <div className="container mx-auto max-w-2xl px-6">
-                    <div className="relative flex items-center gap-4 bg-[#1A0F0D]/90 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-4 py-3 shadow-[0_0_30px_rgba(212,175,55,0.1)] focus-within:border-[#D4AF37]/60 focus-within:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all">
+            {/* Input Area - Static Bottom */}
+            <div className="flex-none z-20 pb-safe pt-2 bg-gradient-to-t from-[#0C0806] via-[#0C0806] to-transparent">
+                <div className="container mx-auto max-w-2xl px-4 pb-4">
+                    <div className="relative flex items-center gap-3 bg-[#1A0F0D]/90 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-3 py-2 shadow-[0_0_30px_rgba(212,175,55,0.1)] focus-within:border-[#D4AF37]/60 focus-within:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all">
                         <button
                             className={`p-2 rounded-full hover:bg-[#D4AF37]/10 transition-colors ${isRecording ? 'text-red-500 animate-pulse' : 'text-[#D4AF37]/60'}`}
                             onClick={() => setIsRecording(!isRecording)}
@@ -202,21 +203,18 @@ export default function ChatPage() {
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                             placeholder="Ask for guidance..."
-                            className="flex-1 bg-transparent border-none outline-none text-[#F5E6D3] placeholder-[#F5E6D3]/20 text-lg font-serif px-2 caret-[#D4AF37]"
+                            className="flex-1 bg-transparent border-none outline-none text-[#F5E6D3] placeholder-[#F5E6D3]/20 text-base md:text-lg font-serif px-2 caret-[#D4AF37] min-w-0"
                             autoFocus
                         />
 
                         <button
-                            className="p-2 rounded-full bg-[#D4AF37] text-[#0C0806] hover:bg-[#FFD700] transition-colors shadow-lg"
+                            className="p-2 rounded-full bg-[#D4AF37] text-[#0C0806] hover:bg-[#FFD700] transition-colors shadow-lg shrink-0"
                             onClick={handleSendMessage}
                             disabled={!inputValue.trim() || isThinking}
                         >
                             <Send className="w-4 h-4 ml-0.5" />
                         </button>
                     </div>
-                    <p className="text-center text-[#D4AF37]/20 text-[10px] mt-4 tracking-[0.2em] uppercase">
-                        Fate is written in the stars. Action is in your hands.
-                    </p>
                 </div>
             </div>
         </main>
