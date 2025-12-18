@@ -16,9 +16,11 @@ function SignInContent() {
   const searchParams = useSearchParams()
   const { loginWithGoogle } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleGoogleLogin = async () => {
     setIsLoading(true)
+    setError(null)
     try {
       await loginWithGoogle()
       // Redirect logic
@@ -28,8 +30,10 @@ function SignInContent() {
       } else {
         router.push('/chat/1') // Default dashboard
       }
-    } catch (error) {
-      console.error(error)
+    } catch (err: any) {
+      console.error(err)
+      setError(err.message || 'Login failed')
+      alert(`Login Failed: ${err.message}`)
       setIsLoading(false)
     }
   }
@@ -115,6 +119,11 @@ function SignInContent() {
                 Phone
               </Button>
             </div>
+            {error && (
+              <div className="mt-4 p-3 bg-red-500/10 border border-red-500/30 rounded text-red-200 text-sm text-center">
+                {error}
+              </div>
+            )}
 
             <p className="text-center text-sm text-[#8B7355] mt-6">
               Don't have an account?{" "}
