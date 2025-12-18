@@ -65,11 +65,11 @@ export function TestimonialsSection() {
       <div className="w-full px-4 md:px-8 lg:px-12 relative">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block text-saffron text-sm font-medium mb-4">Testimonials • भक्तों की आवाज़</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4">
-            Loved by <span className="gradient-text">devotees</span> across India
+          <span className="inline-block text-[#D4AF37] text-sm font-medium mb-4">Testimonials • भक्तों की आवाज़</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-[#F5E6D3]">
+            Loved by <span className="gradient-text-gold">devotees</span> across India
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-[#F5E6D3]/80">
             Hear from our community of seekers who found divine guidance through Vedic Mate.
           </p>
         </div>
@@ -126,10 +126,10 @@ export function TestimonialsSection() {
             { value: "15+", label: "Languages", labelHi: "भाषाएं" },
             { value: "34", label: "AI Pandits", labelHi: "AI पंडित" },
           ].map((stat, i) => (
-            <div key={i} className="text-center p-4 rounded-xl bg-muted/30">
-              <p className="text-2xl md:text-3xl font-bold gradient-text">{stat.value}</p>
-              <p className="text-sm text-muted-foreground">{stat.label}</p>
-              <p className="text-xs text-saffron/60">{stat.labelHi}</p>
+            <div key={i} className="text-center p-4 rounded-xl bg-[#1A0F0D]/40 backdrop-blur-sm border border-[#D4AF37]/10">
+              <p className="text-2xl md:text-3xl font-bold text-[#F5E6D3]">{stat.value}</p>
+              <p className="text-sm text-[#F5E6D3]/80">{stat.label}</p>
+              <p className="text-xs text-[#D4AF37]/70">{stat.labelHi}</p>
             </div>
           ))}
         </div>
