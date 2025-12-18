@@ -108,13 +108,13 @@ export function PanditsSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
-            <span className="inline-block text-saffron text-sm font-medium mb-4">
+            <span className="inline-block text-[#D4AF37] text-sm font-medium mb-4">
               Meet Our Pandits • हमारे पंडितों से मिलें
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4">
-              34 divine AI <span className="gradient-text">guides</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-[#F5E6D3]">
+              34 divine AI <span className="gradient-text-gold">guides</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-xl">
+            <p className="text-lg text-[#F5E6D3]/80 max-w-xl">
               Each with unique expertise spanning decades of encoded Vedic wisdom. Male and female pandits available.
             </p>
           </div>
@@ -233,7 +233,7 @@ export function PanditsSection() {
           <Button
             variant="outline"
             size="lg"
-            className="text-sm bg-transparent gap-2 hover:bg-muted hover:border-saffron/30"
+            className="text-sm bg-[#1A0F0D]/40 border-[#D4AF37]/30 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F0D] gap-2 px-8 h-12"
             asChild
           >
             <Link href="/pandits">
