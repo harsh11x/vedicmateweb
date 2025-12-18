@@ -87,8 +87,8 @@ export function Footer() {
 
 function FooterLink({ href, children }: { href: string, children: React.ReactNode }) {
   return (
-    <li>
-      <Link href={href} className="hover:text-[#FFD700] hover:translate-x-1 transition-all inline-block">
+    <li className="py-1">
+      <Link href={href} className="hover:text-[#FFD700] hover:translate-x-1 transition-all inline-block py-0.5">
         {children}
       </Link>
     </li>
