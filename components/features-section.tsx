@@ -1,7 +1,6 @@
 "use client"
 
 import { Users, Clock, Globe, Shield, MessageCircle, BookOpen } from "lucide-react"
-import { PanditDoodle } from "@/components/illustrations/pandit-doodle"
 import { FloatingSacredSymbols } from "@/components/illustrations/sacred-elements"
 
 const features = [
@@ -55,23 +54,16 @@ export function FeaturesSection() {
       <FloatingSacredSymbols className="absolute inset-0 w-full h-full pointer-events-none" />
 
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-saffron/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="absolute -left-10 top-1/4 opacity-20 hidden xl:block">
-        <PanditDoodle variant="male" className="w-48 h-72" />
-      </div>
-      <div className="absolute -right-10 bottom-1/4 opacity-20 hidden xl:block">
-        <PanditDoodle variant="female" className="w-44 h-64" />
-      </div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-full px-4 md:px-8 lg:px-12 relative">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block text-saffron text-sm font-medium mb-4">Why Choose Us • हमें क्यों चुनें</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-balance">
-            Ancient wisdom meets <span className="gradient-text">modern technology</span>
+          <span className="inline-block text-[#D4AF37] text-sm font-medium mb-4">Why Choose Us • हमें क्यों चुनें</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-balance text-[#F5E6D3]">
+            Ancient wisdom meets <span className="gradient-text-gold">modern technology</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-[#F5E6D3]/70">
             Experience the perfect blend of timeless Vedic knowledge and cutting-edge AI.
           </p>
         </div>

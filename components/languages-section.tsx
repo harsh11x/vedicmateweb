@@ -25,18 +25,18 @@ export function LanguagesSection() {
   return (
     <section
       id="languages"
-      className="py-24 md:py-32 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden"
     >
       <div className="w-full px-4 md:px-8 lg:px-12">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-saffron text-sm font-medium mb-4">
+          <span className="inline-block text-[#D4AF37] text-sm font-medium mb-4">
             Speak Your Language • अपनी भाषा में बात करें
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-balance">
-            Consult in <span className="gradient-text">15+ Indian languages</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-balance text-[#F5E6D3]">
+            Consult in <span className="gradient-text-gold">15+ Indian languages</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-[#F5E6D3]/70">
             Our AI pandits understand and speak your native language fluently. Chat or call in Hindi, Tamil, Telugu,
             Bengali, and many more.
           </p>
@@ -49,9 +49,9 @@ export function LanguagesSection() {
             { icon: Mic, text: "Voice calls supported" },
             { icon: Check, text: "Native pronunciation" },
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border/50">
-              <item.icon className="w-4 h-4 text-saffron" />
-              <span className="text-sm">{item.text}</span>
+            <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A0F0D]/40 border border-[#D4AF37]/30 backdrop-blur-sm">
+              <item.icon className="w-4 h-4 text-[#FFD700]" />
+              <span className="text-sm text-[#F5E6D3]">{item.text}</span>
             </div>
           ))}
         </div>
@@ -61,18 +61,18 @@ export function LanguagesSection() {
           {languages.map((lang, index) => (
             <div
               key={lang.name}
-              className="group relative p-4 rounded-xl bg-card border border-border/50 hover:border-saffron/40 hover:shadow-lg hover:shadow-saffron/5 transition-all duration-300 text-center"
+              className="group relative p-4 rounded-xl bg-[#1A0F0D]/60 backdrop-blur-md border border-[#D4AF37]/20 hover:border-[#D4AF37]/50 hover:shadow-[0_0_20px_rgba(212,175,55,0.1)] transition-all duration-300 text-center"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <p className="text-2xl font-medium text-saffron mb-1">{lang.native}</p>
-              <p className="text-sm font-medium text-foreground">{lang.name}</p>
-              <p className="text-xs text-muted-foreground mt-1">{lang.region}</p>
+              <p className="text-2xl font-serif font-medium text-[#FFD700] mb-1">{lang.native}</p>
+              <p className="text-sm font-medium text-[#F5E6D3]">{lang.name}</p>
+              <p className="text-xs text-[#D4AF37]/70 mt-1">{lang.region}</p>
 
               {/* Hover details */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-saffron to-copper opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="text-white text-center">
-                  <p className="text-xl font-medium">{lang.native}</p>
-                  <p className="text-sm opacity-90">{lang.speakers} speakers</p>
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#D4AF37]/90 to-[#B8860B]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="text-[#1A0F0D] text-center">
+                  <p className="text-xl font-bold font-serif">{lang.native}</p>
+                  <p className="text-sm font-medium opacity-90">{lang.speakers} speakers</p>
                 </div>
               </div>
             </div>

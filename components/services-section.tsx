@@ -76,7 +76,7 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="py-24 md:py-32 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden"
     >
       <div className="w-full px-4 md:px-8 lg:px-12">
         {/* Header */}
