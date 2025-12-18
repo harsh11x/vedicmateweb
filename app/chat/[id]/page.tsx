@@ -107,7 +107,6 @@ export default function ChatPage() {
     }
 
     return (
-    return (
         <main className="flex flex-col h-[100dvh] bg-[#0C0806] text-[#F5E6D3] font-sans overflow-hidden relative selection:bg-[#D4AF37] selection:text-black">
             {/* Background - Sanctum Atmosphere */}
             <div className="absolute inset-0 z-0">
