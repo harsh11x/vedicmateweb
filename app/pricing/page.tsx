@@ -64,61 +64,61 @@ export default function PricingPage() {
 
       {/* Hero */}
       <section className="pt-24 pb-12 relative overflow-hidden">
-        <DecorativeMandala className="absolute top-0 right-0 w-[500px] h-[500px] opacity-[0.03] pointer-events-none" />
+        <DecorativeMandala className="absolute top-0 right-0 w-[500px] h-[500px] opacity-[0.05] pointer-events-none text-[#D4AF37]" />
         <div className="w-full px-4 md:px-8 lg:px-12">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block text-saffron text-sm font-medium mb-4">Pricing • मूल्य</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-4">
-              Simple, <span className="gradient-text">transparent pricing</span>
+            <span className="inline-block text-[#D4AF37] text-sm font-medium mb-4">Pricing • मूल्य</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-4 text-[#F5E6D3]">
+              Simple, <span className="gradient-text-gold">transparent pricing</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-[#F5E6D3]/70">
               Choose the plan that's right for you. Start free and upgrade as you grow in your spiritual journey.
             </p>
-            <p className="text-base text-saffron/80 mt-2">अपनी आध्यात्मिक यात्रा के लिए सही योजना चुनें।</p>
+            <p className="text-base text-[#D4AF37]/80 mt-2">अपनी आध्यात्मिक यात्रा के लिए सही योजना चुनें।</p>
           </div>
         </div>
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-12">
+      <section className="py-12 relative z-10">
         <div className="w-full px-4 md:px-8 lg:px-12">
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`relative bg-card rounded-2xl p-8 border ${plan.popular ? "border-saffron/50 shadow-xl shadow-saffron/10" : "border-border/50"
-                  }`}
+                className={`relative bg-[#1A0F0D]/60 backdrop-blur-md rounded-2xl p-8 border ${plan.popular ? "border-[#D4AF37]/50 shadow-[0_0_30px_rgba(212,175,55,0.15)]" : "border-[#D4AF37]/20"
+                  } transition-all duration-300 hover:border-[#D4AF37]/50`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-saffron to-copper text-white text-sm font-medium flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-white" />
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#1A0F0D] text-sm font-bold flex items-center gap-1 shadow-lg">
+                    <Star className="w-4 h-4 fill-[#1A0F0D] text-[#1A0F0D]" />
                     Most Popular
                   </div>
                 )}
 
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-semibold">{plan.name}</h3>
-                  <p className="text-sm text-saffron/70">{plan.nameHi}</p>
-                  <div className="mt-4">
+                  <h3 className="text-xl font-serif text-[#F5E6D3]">{plan.name}</h3>
+                  <p className="text-sm text-[#D4AF37]/80">{plan.nameHi}</p>
+                  <div className="mt-4 text-[#F5E6D3]">
                     <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-muted-foreground">{plan.period}</span>
+                    <span className="text-[#F5E6D3]/60">{plan.period}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+                  <p className="text-sm text-[#F5E6D3]/60 mt-2">{plan.description}</p>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-saffron" />
-                      <span className="text-sm">{feature}</span>
+                      <Check className="w-4 h-4 text-[#FFD700]" />
+                      <span className="text-sm text-[#F5E6D3]/90">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Button
-                  className={`w-full ${plan.popular
-                      ? "bg-gradient-to-r from-saffron to-copper text-white"
-                      : "bg-muted text-foreground hover:bg-muted/80"
+                  className={`w-full font-medium ${plan.popular
+                    ? "bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-[#1A0F0D] hover:opacity-90 border-0"
+                    : "bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20"
                     }`}
                   asChild
                 >
@@ -131,10 +131,10 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-12">
+      <section className="py-12 pb-24">
         <div className="w-full px-4 md:px-8 lg:px-12">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-semibold mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-serif text-[#F5E6D3] mb-8">Frequently Asked Questions</h2>
             <div className="space-y-4 text-left">
               {[
                 { q: "Can I change plans later?", a: "Yes, you can upgrade or downgrade your plan at any time." },
@@ -151,9 +151,9 @@ export default function PricingPage() {
                   a: "Yes, you can cancel your subscription at any time with no questions asked.",
                 },
               ].map((faq, i) => (
-                <div key={i} className="p-4 rounded-xl bg-card border border-border/50">
-                  <h4 className="font-semibold mb-2">{faq.q}</h4>
-                  <p className="text-sm text-muted-foreground">{faq.a}</p>
+                <div key={i} className="p-4 rounded-xl bg-[#1A0F0D]/40 border border-[#D4AF37]/20 backdrop-blur-sm">
+                  <h4 className="font-medium text-[#D4AF37] mb-2">{faq.q}</h4>
+                  <p className="text-sm text-[#F5E6D3]/70">{faq.a}</p>
                 </div>
               ))}
             </div>
