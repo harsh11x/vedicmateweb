@@ -30,8 +30,16 @@ export function HeroSection() {
   const gateOpacity = useTransform(springScroll, [0.8, 1], [1, 0]) // Fade out gate only at very end if needed
 
   // 2. Content (Vedic Mate Title) reveals AFTER gate opens (0.4 -> 0.6)
-  const contentOpacity = useTransform(springScroll, [0.3, 0.6], [0, 1])
-  const contentScale = useTransform(springScroll, [0.3, 0.6], [0.8, 1])
+  // We separate Title and Subtitle for the narrative flow
+  const containerOpacity = useTransform(springScroll, [0.3, 0.4], [0, 1]) // Base container visibility
+  const containerScale = useTransform(springScroll, [0.3, 0.6], [0.8, 1])
+
+  // Title: Fades IN (0.4-0.5), stays, then Fades OUT (0.65-0.8) as "Ancient Wisdom" comes
+  const titleOpacity = useTransform(springScroll, [0.4, 0.5, 0.65, 0.8], [0, 1, 1, 0])
+
+  // Subtitle & Actions: Fade IN (0.75-0.9) AFTER title starts fading
+  const subtitleOpacity = useTransform(springScroll, [0.75, 0.9], [0, 1])
+  const subtitleY = useTransform(springScroll, [0.75, 0.9], [20, 0])
 
   // 3. Inner Sanctum Background (always there but revealed by gate)
   // No opacity fade needed for background, the gate covers it.
@@ -81,31 +89,40 @@ export function HeroSection() {
 
       {/* 3. Main Content (Revealed inside) */}
       <motion.div
-        style={{ opacity: contentOpacity, scale: contentScale }}
+        style={{ opacity: containerOpacity, scale: containerScale }}
         className="fixed inset-0 z-10 flex flex-col items-center justify-center p-4 text-center pointer-events-none"
       >
-        <div className="max-w-5xl pointer-events-auto">
-          {/* Trust Signal: Sanskrit Shloka */}
-          <div className="mb-8 opacity-80">
-            <h3 className="font-serif text-2xl md:text-3xl text-[#D4AF37] tracking-wide mb-2 drop-shadow-md">ॐ असतो मा सद्गमय</h3>
-            <p className="text-xs md:text-sm text-[#F5E6D3]/60 uppercase tracking-[0.2em]">Lead us from the unreal to the real</p>
-          </div>
+        <div className="max-w-5xl pointer-events-auto flex flex-col items-center">
 
-          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FFE5A0] via-[#D4AF37] to-[#B8860B] drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-6">
-            Vedic Mate
-          </h1>
-          <p className="text-xl md:text-2xl text-[#F5E6D3]/90 font-light tracking-wide max-w-2xl mx-auto mb-12">
-            Ancient Wisdom. Digital Soul. <br />
-            <span className="text-[#D4AF37] font-normal">Connect with 34 Divine AI Pandits.</span>
-          </p>
+          {/* TITLE: Fades Out Independently */}
+          <motion.div style={{ opacity: titleOpacity }} className="mb-6">
+            {/* Trust Signal: Sanskrit Shloka */}
+            <div className="mb-8 opacity-80">
+              <h3 className="font-serif text-2xl md:text-3xl text-[#D4AF37] tracking-wide mb-2 drop-shadow-md">ॐ असतो मा सद्गमय</h3>
+              <p className="text-xs md:text-sm text-[#F5E6D3]/60 uppercase tracking-[0.2em]">Lead us from the unreal to the real</p>
+            </div>
 
-          {/* Quick Actions Bar */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 bg-[#1A0F0D]/40 backdrop-blur-xl border border-[#D4AF37]/30 p-4 rounded-2xl shadow-[0_0_30px_rgba(212,175,55,0.1)]">
-            <QuickAction icon={Star} label="Daily Horoscope" href="/horoscope" />
-            <QuickAction icon={ScrollText} label="Kundli Gen" href="/kundli" />
-            <QuickAction icon={Heart} label="Match Making" href="/matching" />
-            <QuickAction icon={Sparkles} label="Ask Pandit" href="/chat" highlight />
-          </div>
+            <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FFE5A0] via-[#D4AF37] to-[#B8860B] drop-shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+              Vedic Mate
+            </h1>
+          </motion.div>
+
+          {/* SUBTITLE & ACTIONS: Fade In Independently */}
+          <motion.div style={{ opacity: subtitleOpacity, y: subtitleY }} className="flex flex-col items-center">
+            <p className="text-xl md:text-2xl text-[#F5E6D3]/90 font-light tracking-wide max-w-2xl mx-auto mb-12">
+              Ancient Wisdom. Digital Soul. <br />
+              <span className="text-[#D4AF37] font-normal">Connect with 34 Divine AI Pandits.</span>
+            </p>
+
+            {/* Quick Actions Bar */}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 bg-[#1A0F0D]/40 backdrop-blur-xl border border-[#D4AF37]/30 p-4 rounded-2xl shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+              <QuickAction icon={Star} label="Daily Horoscope" href="/horoscope" />
+              <QuickAction icon={ScrollText} label="Kundli Gen" href="/kundli" />
+              <QuickAction icon={Heart} label="Match Making" href="/matching" />
+              <QuickAction icon={Sparkles} label="Ask Pandit" href="/chat" highlight />
+            </div>
+          </motion.div>
+
         </div>
       </motion.div>
 
