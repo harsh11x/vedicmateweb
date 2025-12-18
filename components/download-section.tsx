@@ -26,9 +26,9 @@ export function DownloadSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="order-2 lg:order-1">
-            <span className="inline-block text-saffron text-sm font-medium mb-4">Download App • ऐप डाउनलोड करें</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4">
-              Carry <span className="gradient-text">divine wisdom</span> in your pocket
+            <span className="inline-block text-[#F5E6D3] text-sm font-medium mb-4 tracking-wide opacity-90">Download App • ऐप डाउनलोड करें</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-[#F5E6D3]">
+              Carry <span className="gradient-text-gold">divine wisdom</span> in your pocket
             </h2>
             <p className="text-lg text-[#F5E6D3]/80 mb-8">
               Get instant access to 34 AI Pandits, personalized horoscopes, and spiritual guidance. Available in 15+
@@ -51,23 +51,23 @@ export function DownloadSection() {
             </div>
 
             {/* Stats */}
-            <div className="flex items-center gap-6 mb-8">
+            <div className="flex items-center gap-6 mb-8 text-[#F5E6D3]">
               <div>
-                <p className="text-2xl font-bold">100K+</p>
-                <p className="text-xs text-muted-foreground">Downloads</p>
+                <p className="text-2xl font-bold text-[#FFD700]">100K+</p>
+                <p className="text-xs text-[#F5E6D3]/70">Downloads</p>
               </div>
-              <div className="w-px h-10 bg-border" />
+              <div className="w-px h-10 bg-[#D4AF37]/20" />
               <div>
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  <span className="text-2xl font-bold">4.8</span>
+                  <span className="text-2xl font-bold text-[#FFD700]">4.8</span>
                 </div>
-                <p className="text-xs text-muted-foreground">App Rating</p>
+                <p className="text-xs text-[#F5E6D3]/70">App Rating</p>
               </div>
-              <div className="w-px h-10 bg-border" />
+              <div className="w-px h-10 bg-[#D4AF37]/20" />
               <div>
-                <p className="text-2xl font-bold">50K+</p>
-                <p className="text-xs text-muted-foreground">Reviews</p>
+                <p className="text-2xl font-bold text-[#FFD700]">50K+</p>
+                <p className="text-xs text-[#F5E6D3]/70">Reviews</p>
               </div>
             </div>
 

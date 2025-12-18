@@ -123,25 +123,25 @@ export function PanditsSection() {
           <div className="flex items-center gap-3">
             <button
               onClick={prev}
-              className="p-3 rounded-full border border-border hover:bg-muted hover:border-saffron/30 transition-all"
+              className="p-3 rounded-full bg-[#1A0F0D]/60 border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F0D] shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="flex gap-1.5">
               {Array.from({ length: totalPages }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentPage(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${i === currentPage ? "bg-saffron w-6" : "bg-border hover:bg-muted-foreground"
+                  className={`w-2 h-2 rounded-full transition-all ${i === currentPage ? "bg-[#D4AF37] w-6 scale-110 shadow-[0_0_10px_rgba(212,175,55,0.5)]" : "bg-[#D4AF37]/30 hover:bg-[#D4AF37]/60"
                     }`}
                 />
               ))}
             </div>
             <button
               onClick={next}
-              className="p-3 rounded-full border border-border hover:bg-muted hover:border-saffron/30 transition-all"
+              className="p-3 rounded-full bg-[#1A0F0D]/60 border border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1A0F0D] shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </div>
         </div>
