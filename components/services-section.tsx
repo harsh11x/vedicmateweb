@@ -81,11 +81,11 @@ export function ServicesSection() {
       <div className="w-full px-4 md:px-8 lg:px-12">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block text-saffron text-sm font-medium mb-4">Our Services • हमारी सेवाएं</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4">
-            Comprehensive <span className="gradient-text">Vedic guidance</span>
+          <span className="inline-block text-[#F5E6D3] text-sm font-medium mb-4 tracking-wide opacity-90">Our Services • हमारी सेवाएं</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-[#F5E6D3]">
+            Comprehensive <span className="gradient-text-gold">Vedic guidance</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-[#F5E6D3]/80">
             From daily horoscopes to life-changing decisions, we guide every aspect of your journey.
           </p>
         </div>
