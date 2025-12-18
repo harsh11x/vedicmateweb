@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Apple, Play, Star, Smartphone, MessageCircle, Phone } from "lucide-react"
 import { DecorativeMandala } from "@/components/illustrations/decorative-mandala"
-import { PanditDoodle } from "@/components/illustrations/pandit-doodle"
 import { SacredKalash, SacredDiya } from "@/components/illustrations/sacred-elements"
 import Link from "next/link"
 
@@ -11,7 +10,7 @@ export function DownloadSection() {
   return (
     <section
       id="download"
-      className="py-24 md:py-32 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden"
     >
       {/* Background mandala */}
       <DecorativeMandala className="absolute -right-40 top-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-[0.03] pointer-events-none" />
@@ -44,9 +43,9 @@ export function DownloadSection() {
                 { icon: Smartphone, text: "Offline Mode" },
                 { icon: Star, text: "Daily Horoscope" },
               ].map((feature, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border/50">
-                  <feature.icon className="w-5 h-5 text-saffron" />
-                  <span className="text-sm font-medium">{feature.text}</span>
+                <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-[#1A0F0D]/40 border border-[#D4AF37]/30 backdrop-blur-sm">
+                  <feature.icon className="w-5 h-5 text-[#FFD700]" />
+                  <span className="text-sm font-medium text-[#F5E6D3]">{feature.text}</span>
                 </div>
               ))}
             </div>
@@ -110,7 +109,7 @@ export function DownloadSection() {
                 className="absolute -left-24 bottom-10 hidden lg:block animate-float"
                 style={{ animationDelay: "1s" }}
               >
-                <PanditDoodle variant="male" className="w-32 h-48 drop-shadow-lg" />
+                <SacredKalash className="w-32 h-48 drop-shadow-lg opacity-80" />
               </div>
 
               {/* Phone Frame */}
@@ -169,7 +168,7 @@ export function DownloadSection() {
               </div>
 
               <div className="absolute -right-20 top-20 hidden lg:block animate-float" style={{ animationDelay: "2s" }}>
-                <PanditDoodle variant="female" className="w-28 h-44 drop-shadow-lg" />
+                <SacredDiya className="w-28 h-44 drop-shadow-lg opacity-80" />
               </div>
             </div>
           </div>
