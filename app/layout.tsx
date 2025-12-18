@@ -36,8 +36,6 @@ export const viewport: Viewport = {
   themeColor: "#D4AF37",
 }
 
-import { AuthProvider } from "@/context/auth-context"
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -45,10 +43,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${hindMadurai.variable} ${tiroDevanagari.variable} font-sans antialiased`}>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+      <body className={`${hindMadurai.variable} ${tiroDevanagari.variable} font-sans`}>
+        {children}
         <Analytics />
       </body>
     </html>

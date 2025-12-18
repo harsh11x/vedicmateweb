@@ -3,83 +3,92 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const navItems = [
   { label: "Horoscopes", href: "/horoscope" },
   { label: "Kundli", href: "/kundli" },
   { label: "Matching", href: "/matching" },
-  { label: "AI Pandits", href: "/pandits" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Pandits", href: "/pandits" },
+  { label: "Shop", href: "/shop" },
 ]
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <div className="absolute inset-0 bg-[#0C0806]/80 backdrop-blur-md border-b border-[#D4AF37]/20" />
 
-        {/* Minimal Brand */}
-        <Link href="/" className="text-xl font-bold tracking-tight">
-          VedicMate.
+      <div className="relative w-full px-6 md:px-12 py-4 flex items-center justify-between">
+
+        {/* Brand: Divine Gold */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#D4AF37] to-[#B8860B] flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition-shadow">
+            <span className="text-black font-serif font-bold text-xl">ॐ</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="font-serif text-xl tracking-tight text-[#F5E6D3] group-hover:text-white transition-colors">Vedic Mate</span>
+            <span className="text-[10px] uppercase tracking-widest text-[#D4AF37]">Digital Sanctum</span>
+          </div>
         </Link>
 
-        {/* Mobile Toggle */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        {/* Desktop Nav */}
+        {/* Desktop Nav - Functional & Clean */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <Link key={item.label} href={item.href} className="text-sm font-medium text-[#F5E6D3]/80 hover:text-[#D4AF37] transition-colors flex items-center gap-1">
               {item.label}
             </Link>
           ))}
         </nav>
 
-        {/* Auth Buttons */}
+        {/* CTA Area */}
         <div className="hidden md:flex items-center gap-4">
-          <Link href="/signin" className="text-sm font-medium hover:underline">
-            Sign In
-          </Link>
+          <Link href="/signin" className="text-sm font-medium text-[#F5E6D3] hover:text-[#D4AF37] transition-colors">Login</Link>
           <Link href="/signup">
-            <Button className="btn-zen rounded-full px-6">
+            <Button className="rounded-full bg-gradient-to-r from-[#D4AF37] to-[#FDB931] text-black hover:brightness-110 border border-[#B8860B] px-6 text-xs font-bold tracking-wide uppercase shadow-lg shadow-[#D4AF37]/20">
               Get Started
             </Button>
           </Link>
         </div>
+
+        {/* Mobile Toggle */}
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-[#D4AF37]">
+          {isOpen ? <X /> : <Menu />}
+        </button>
+
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border p-6 flex flex-col gap-4 shadow-lg">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="text-lg font-medium py-2 border-b border-border/50"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="flex flex-col gap-3 mt-4">
-            <Link href="/signin" onClick={() => setIsOpen(false)}>
-              <Button variant="outline" className="w-full rounded-full">Sign In</Button>
-            </Link>
-            <Link href="/signup" onClick={() => setIsOpen(false)}>
-              <Button className="w-full btn-zen rounded-full">Get Started</Button>
-            </Link>
-          </div>
-        </div>
-      )}
+      {/* Mobile Menu - Glass Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-[#1A0F0D]/95 backdrop-blur-xl border-b border-[#D4AF37]/20 overflow-hidden relative z-40"
+          >
+            <div className="p-6 flex flex-col gap-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-serif text-[#F5E6D3] hover:text-[#D4AF37] border-b border-[#D4AF37]/10 pb-2"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link href="/signup">
+                <Button className="w-full rounded-full bg-[#D4AF37] text-black font-bold">
+                  Get Started
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
-

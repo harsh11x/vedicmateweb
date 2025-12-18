@@ -2,29 +2,22 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowLeft, Mic, Send, Volume2, VolumeX, Sparkles, StopCircle } from "lucide-react"
+import { ArrowLeft, Mic, Send, Volume2, VolumeX, Sparkles } from "lucide-react"
 import Link from "next/link"
-import { useParams, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { CinematicTemple } from "@/components/cinematic-temple"
 import { PANDITS } from "@/lib/pandit-data"
-import { useAuth } from "@/context/auth-context"
 
 export default function ChatPage() {
     const params = useParams()
-    const router = useRouter()
-    const { user, loading } = useAuth()
     const panditId = params.id as string
     const pandit = PANDITS[panditId]
 
-    // Auth Protection
-    useEffect(() => {
-        if (!loading && !user) {
-            router.push(`/signin?redirect=/chat/${panditId}`)
-        }
-    }, [user, loading, router, panditId])
-
     const [messages, setMessages] = useState<{ role: 'user' | 'assistant', content: string }[]>([])
     const [inputValue, setInputValue] = useState("")
+    const [isRecording, setIsRecording] = useState(false)
+    const [audioEnabled, setAudioEnabled] = useState(true)
     const [isThinking, setIsThinking] = useState(false)
     const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -36,12 +29,13 @@ export default function ChatPage() {
         scrollToBottom()
     }, [messages, isThinking])
 
-    // Initial Greeting
+    // Initial Greeting using Personas
     useEffect(() => {
         if (!pandit) return
+
         const timer = setTimeout(() => {
             setMessages([{ role: 'assistant', content: pandit.greeting || "Welcome to the Sanctum. The stars respond to those who ask. What is your query?" }])
-        }, 500)
+        }, 1000)
         return () => clearTimeout(timer)
     }, [pandit])
 
@@ -72,7 +66,7 @@ export default function ChatPage() {
 
             // Add placeholder for assistant message
             setMessages(prev => [...prev, { role: 'assistant', content: "" }])
-            setIsThinking(false)
+            setIsThinking(false) // Start showing the message instead of thinking
 
             while (true) {
                 const { done, value } = await reader.read()
@@ -91,6 +85,7 @@ export default function ChatPage() {
                             const content = json.choices[0]?.delta?.content
                             if (content) {
                                 assistantMessage += content
+                                // Update the last message
                                 setMessages(prev => {
                                     const updated = [...prev]
                                     updated[updated.length - 1] = { role: 'assistant', content: assistantMessage }
@@ -98,7 +93,7 @@ export default function ChatPage() {
                                 })
                             }
                         } catch (e) {
-                            // Ignore parse errors
+                            // Ignore parse errors for partial chunks
                         }
                     }
                 }
@@ -106,96 +101,124 @@ export default function ChatPage() {
 
         } catch (error) {
             console.error(error)
-            setMessages(prev => [...prev, { role: 'assistant', content: "Connection interrupted. Please try again." }])
+            setMessages(prev => [...prev, { role: 'assistant', content: "The connection to the cosmos was interrupted. Please try again." }])
             setIsThinking(false)
         }
     }
 
-    if (loading) return <div className="h-screen bg-background flex items-center justify-center">Loading Sanctum...</div>
-    if (!user) return null // Will redirect
-
     return (
-        <main className="min-h-screen bg-background text-foreground font-sans flex flex-col relative">
+        <main className="min-h-screen bg-[#0C0806] text-[#F5E6D3] font-sans overflow-hidden relative selection:bg-[#D4AF37] selection:text-black">
+            {/* Background - Sanctum Atmosphere */}
+            <div className="fixed inset-0 z-0">
+                <CinematicTemple mode="seated" />
+            </div>
 
-            {/* Minimal Header */}
-            <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border h-16 flex items-center justify-between px-4 md:px-6">
-                <Link href="/pandits" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    <ArrowLeft className="w-5 h-5" />
-                    <span className="text-sm font-medium">Exit</span>
+            {/* Header - Jewel Box */}
+            <header className="fixed top-0 left-0 right-0 z-50 px-6 py-6 flex items-center justify-between pointer-events-auto">
+                <Link href="/" className="flex items-center gap-2 text-[#D4AF37] hover:text-white transition-colors group glass-panel rounded-full px-4 py-2">
+                    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                    <span className="font-serif text-lg tracking-tight">Return to Temple</span>
                 </Link>
 
-                <div className="flex flex-col items-center">
-                    <span className="font-bold text-sm tracking-tight">{pandit?.name || "AI Pandit"}</span>
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{pandit ? pandit.specialization.split(',')[0] : "Vedic Guide"}</span>
-                </div>
+                <div className="flex items-center gap-4">
+                    {/* Pandit Name Badge */}
+                    {pandit && (
+                        <div className="hidden md:flex flex-col items-end mr-2">
+                            <span className="text-[#D4AF37] font-serif text-lg leading-none">{pandit.name}</span>
+                            <span className="text-white/50 text-xs uppercase tracking-widest">{pandit.specialization.split(',')[0]}</span>
+                        </div>
+                    )}
 
-                <div className="w-8" /> {/* Spacer for centering */}
+                    <button
+                        onClick={() => setAudioEnabled(!audioEnabled)}
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37]/10 glass-panel transition-all"
+                    >
+                        {audioEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                    </button>
+                </div>
             </header>
 
-            {/* Chat Area */}
-            <div className="flex-1 w-full max-w-3xl mx-auto p-4 md:p-6 mb-24 overflow-y-auto">
-                <AnimatePresence mode="popLayout">
-                    {messages.map((msg, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className={`flex mb-6 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                        >
-                            <div
-                                className={`
-                                    max-w-[85%] p-4 md:p-5 rounded-2xl text-base md:text-lg leading-relaxed
-                                    ${msg.role === 'user'
-                                        ? 'bg-black text-white rounded-tr-sm'
-                                        : 'bg-secondary text-foreground rounded-tl-sm'
-                                    }
-                                `}
+            {/* Chat Area - Parchment Scrolls */}
+            <div className="relative z-20 container mx-auto h-screen flex flex-col pt-24 pb-32 px-4 md:px-0 max-w-3xl pointer-events-none">
+                <div className="flex-1 overflow-y-auto scrollbar-hide pointer-events-auto space-y-8 px-4">
+                    <AnimatePresence mode="popLayout">
+                        {messages.map((msg, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
-                                <p className="whitespace-pre-wrap">{msg.content}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                    {isThinking && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="flex justify-start mb-6"
+                                <div
+                                    className={`
+                    max-w-[85%] p-6 rounded-2xl text-lg leading-relaxed shadow-lg backdrop-blur-md border
+                    ${msg.role === 'user'
+                                            ? 'bg-[#D4AF37]/10 border-[#D4AF37]/30 text-white rounded-tr-sm'
+                                            : 'bg-[#1A0F0D]/60 border-[#D4AF37]/10 text-[#FFE5A0] font-serif rounded-tl-sm'
+                                        }
+                  `}
+                                >
+                                    {msg.role === 'assistant' && (
+                                        <div className="flex items-center gap-2 mb-2 opacity-50">
+                                            <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+                                            <span className="text-[10px] uppercase tracking-widest text-[#D4AF37]">Vedic Insight</span>
+                                        </div>
+                                    )}
+                                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                        {isThinking && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="flex justify-start"
+                            >
+                                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A0F0D]/40 border border-[#D4AF37]/10">
+                                    <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-pulse" />
+                                    <span className="text-xs text-[#D4AF37] uppercase tracking-widest opacity-70">Consulting Scriptures...</span>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                    <div ref={messagesEndRef} />
+                </div>
+            </div>
+
+            {/* Input Area - Golden Vessel */}
+            <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-auto pb-10 pt-20 bg-gradient-to-t from-[#0C0806] via-[#0C0806] to-transparent">
+                <div className="container mx-auto max-w-2xl px-6">
+                    <div className="relative flex items-center gap-4 bg-[#1A0F0D]/90 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-4 py-3 shadow-[0_0_30px_rgba(212,175,55,0.1)] focus-within:border-[#D4AF37]/60 focus-within:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all">
+                        <button
+                            className={`p-2 rounded-full hover:bg-[#D4AF37]/10 transition-colors ${isRecording ? 'text-red-500 animate-pulse' : 'text-[#D4AF37]/60'}`}
+                            onClick={() => setIsRecording(!isRecording)}
                         >
-                            <div className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-secondary rounded-tl-sm text-sm text-muted-foreground">
-                                <Sparkles className="w-4 h-4 animate-spin-slow" />
-                                <span>Consulting Vedic texts...</span>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-                <div ref={messagesEndRef} />
-            </div>
+                            <Mic className="w-5 h-5" />
+                        </button>
 
-            {/* Message Input */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border">
-                <div className="max-w-3xl mx-auto relative flex items-center gap-2">
-                    <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                        placeholder="Ask your query..."
-                        className="flex-1 bg-secondary hover:bg-secondary/80 transition-colors rounded-full h-12 md:h-14 px-6 outline-none text-foreground placeholder:text-muted-foreground"
-                    />
-                    <Button
-                        size="icon"
-                        className="h-12 w-12 md:h-14 md:w-14 rounded-full btn-zen shrink-0"
-                        onClick={handleSendMessage}
-                        disabled={!inputValue.trim() || isThinking}
-                    >
-                        <Send className="w-5 h-5 ml-0.5" />
-                    </Button>
-                </div>
-                <div className="text-center mt-2">
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground opacity-50">AI Guidance can be imprecise.</p>
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                            placeholder="Ask for guidance..."
+                            className="flex-1 bg-transparent border-none outline-none text-[#F5E6D3] placeholder-[#F5E6D3]/20 text-lg font-serif px-2 caret-[#D4AF37]"
+                            autoFocus
+                        />
+
+                        <button
+                            className="p-2 rounded-full bg-[#D4AF37] text-[#0C0806] hover:bg-[#FFD700] transition-colors shadow-lg"
+                            onClick={handleSendMessage}
+                            disabled={!inputValue.trim() || isThinking}
+                        >
+                            <Send className="w-4 h-4 ml-0.5" />
+                        </button>
+                    </div>
+                    <p className="text-center text-[#D4AF37]/20 text-[10px] mt-4 tracking-[0.2em] uppercase">
+                        Fate is written in the stars. Action is in your hands.
+                    </p>
                 </div>
             </div>
-
         </main>
     )
 }

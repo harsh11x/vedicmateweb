@@ -1,69 +1,71 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { DecorativeMandala } from "@/components/illustrations/decorative-mandala"
 
 export default function RefundPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans">
+    <main className="min-h-screen bg-background">
       <Header />
 
-      <section className="pt-32 pb-16 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <div className="mb-4 flex items-center gap-2">
-            <span className="h-px w-8 bg-black"></span>
-            <span className="text-xs uppercase tracking-widest font-bold">Legal</span>
-          </div>
-          <h1 className="text-massive leading-[0.85] tracking-tighter mb-8">Refund<br />Policy.</h1>
+      <section className="pt-24 pb-12 relative overflow-hidden">
+        <DecorativeMandala className="absolute top-0 right-0 w-[400px] h-[400px] opacity-[0.03] pointer-events-none" />
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-4xl mx-auto">
+            <span className="inline-block text-saffron text-sm font-medium mb-4">Refund Policy • धनवापसी नीति</span>
+            <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-8">Refund Policy</h1>
 
-          <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-p:text-muted-foreground prose-a:text-black">
-            <p className="font-mono text-sm text-muted-foreground mb-12">Last updated: December 2024</p>
+            <div className="prose prose-lg max-w-none">
+              <p className="text-muted-foreground mb-6">Last updated: December 2024</p>
 
-            <div className="space-y-12">
-              <section>
-                <h3>1. Subscription Refunds</h3>
-                <p>
-                  If you are not satisfied with our Premium or Family subscription, you may request a full refund
-                  within 7 days of your initial purchase. After 7 days, refunds will be prorated based on usage.
-                </p>
-              </section>
+              <div className="space-y-8">
+                <section>
+                  <h2 className="text-2xl font-semibold mb-4">1. Subscription Refunds</h2>
+                  <p className="text-muted-foreground">
+                    If you are not satisfied with our Premium or Family subscription, you may request a full refund
+                    within 7 days of your initial purchase. After 7 days, refunds will be prorated based on usage.
+                  </p>
+                </section>
 
-              <section>
-                <h3>2. Consultation Credits</h3>
-                <p>
-                  Unused consultation credits from subscription plans are non-refundable but do not expire as long as
-                  your subscription is active.
-                </p>
-              </section>
+                <section>
+                  <h2 className="text-2xl font-semibold mb-4">2. Consultation Credits</h2>
+                  <p className="text-muted-foreground">
+                    Unused consultation credits from subscription plans are non-refundable but do not expire as long as
+                    your subscription is active.
+                  </p>
+                </section>
 
-              <section>
-                <h3>3. Technical Issues</h3>
-                <p>
-                  If you experience technical issues that prevent you from using our services, please contact our
-                  support team. We will either resolve the issue or provide appropriate compensation.
-                </p>
-              </section>
+                <section>
+                  <h2 className="text-2xl font-semibold mb-4">3. Technical Issues</h2>
+                  <p className="text-muted-foreground">
+                    If you experience technical issues that prevent you from using our services, please contact our
+                    support team. We will either resolve the issue or provide appropriate compensation.
+                  </p>
+                </section>
 
-              <section>
-                <h3>4. How to Request a Refund</h3>
-                <p>
-                  To request a refund, please email us at <a href="mailto:refunds@vedicmate.com">refunds@vedicmate.com</a> with your account details and reason
-                  for the refund. We will process your request within 5-7 business days.
-                </p>
-              </section>
+                <section>
+                  <h2 className="text-2xl font-semibold mb-4">4. How to Request a Refund</h2>
+                  <p className="text-muted-foreground">
+                    To request a refund, please email us at refunds@vedicmate.com with your account details and reason
+                    for the refund. We will process your request within 5-7 business days.
+                  </p>
+                </section>
 
-              <section>
-                <h3>5. Cancellation</h3>
-                <p>
-                  You may cancel your subscription at any time. Upon cancellation, you will continue to have access to
-                  premium features until the end of your current billing period.
-                </p>
-              </section>
+                <section>
+                  <h2 className="text-2xl font-semibold mb-4">5. Cancellation</h2>
+                  <p className="text-muted-foreground">
+                    You may cancel your subscription at any time. Upon cancellation, you will continue to have access to
+                    premium features until the end of your current billing period.
+                  </p>
+                </section>
 
-              <section>
-                <h3>6. Contact</h3>
-                <p>
-                  For any questions about refunds, please contact us at <a href="mailto:support@vedicmate.com">support@vedicmate.com</a>.
-                </p>
-              </section>
+                <section>
+                  <h2 className="text-2xl font-semibold mb-4">6. Contact</h2>
+                  <p className="text-muted-foreground">
+                    For any questions about refunds, please contact us at support@vedicmate.com or call our toll-free
+                    number: 1800-XXX-XXXX.
+                  </p>
+                </section>
+              </div>
             </div>
           </div>
         </div>

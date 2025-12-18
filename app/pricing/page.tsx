@@ -2,106 +2,123 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Check, Star } from "lucide-react"
+import { DecorativeMandala } from "@/components/illustrations/decorative-mandala"
 import Link from "next/link"
 
 const plans = [
   {
     name: "Free",
+    nameHi: "मुफ़्त",
     price: "₹0",
-    features: ["3 Consultations", "Daily Horoscope", "Basic Kundli"],
+    period: "forever",
+    description: "Perfect for trying out Vedic Mate",
+    features: ["3 chat consultations/month", "Daily horoscope", "Basic Kundli generation", "2 languages supported"],
     cta: "Get Started",
     popular: false,
+    gradient: "from-gray-500 to-gray-600",
   },
   {
     name: "Premium",
+    nameHi: "प्रीमियम",
     price: "₹299",
-    period: "/mo",
+    period: "/month",
+    description: "Most popular for regular consultations",
     features: [
-      "Unlimited Consultations",
-      "10 Voice Calls",
-      "Detailed Reports",
-      "Priority Support",
+      "Unlimited chat consultations",
+      "10 voice calls/month",
+      "All 34 AI Pandits",
+      "15+ languages",
+      "Detailed Kundli with PDF",
+      "Match making reports",
+      "Priority support",
     ],
-    cta: "Go Premium",
+    cta: "Start Premium",
     popular: true,
+    gradient: "from-saffron to-copper",
   },
   {
     name: "Family",
+    nameHi: "परिवार",
     price: "₹599",
-    period: "/mo",
+    period: "/month",
+    description: "Best value for families",
     features: [
-      "Up to 5 Profiles",
-      "Unlimited Calls",
-      "Family Matching",
-      "Dedicated Pandit",
+      "Everything in Premium",
+      "Up to 5 family members",
+      "Unlimited voice calls",
+      "Family Kundli matching",
+      "Muhurat calendar",
+      "Dedicated pandit",
+      "24/7 priority support",
     ],
-    cta: "Family Plan",
+    cta: "Start Family Plan",
     popular: false,
+    gradient: "from-purple-500 to-pink-500",
   },
 ]
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans selection:bg-black selection:text-white">
+    <main className="min-h-screen bg-background">
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 md:pt-48 md:pb-32 px-6">
-        <div className="container mx-auto max-w-5xl">
-          <div className="mb-4 flex items-center gap-2">
-            <span className="h-px w-8 bg-black"></span>
-            <span className="text-xs uppercase tracking-widest font-bold">Invest</span>
+      <section className="pt-24 pb-12 relative overflow-hidden">
+        <DecorativeMandala className="absolute top-0 right-0 w-[500px] h-[500px] opacity-[0.03] pointer-events-none" />
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-block text-saffron text-sm font-medium mb-4">Pricing • मूल्य</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-4">
+              Simple, <span className="gradient-text">transparent pricing</span>
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Choose the plan that's right for you. Start free and upgrade as you grow in your spiritual journey.
+            </p>
+            <p className="text-base text-saffron/80 mt-2">अपनी आध्यात्मिक यात्रा के लिए सही योजना चुनें।</p>
           </div>
-          <h1 className="text-massive leading-[0.85] tracking-tighter mb-8">
-            Simple.<br />Transparent.
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
-            Choose the plan that fits your journey. No hidden fees. Just pure guidance.
-          </p>
         </div>
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="py-12">
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`relative rounded-2xl p-8 flex flex-col justify-between transition-all duration-300
-                    ${plan.popular
-                    ? "bg-black text-white shadow-2xl scale-105"
-                    : "bg-background border border-border hover:border-black"
-                  }
-                `}
+                className={`relative bg-card rounded-2xl p-8 border ${plan.popular ? "border-saffron/50 shadow-xl shadow-saffron/10" : "border-border/50"
+                  }`}
               >
-                <div>
-                  <div className="flex justify-between items-start mb-8">
-                    <div>
-                      <h3 className="text-xl font-bold tracking-tight">{plan.name}</h3>
-                      {plan.popular && <span className="text-[10px] uppercase tracking-widest opacity-80 mt-1 block">Most Popular</span>}
-                    </div>
-                    <div className="text-right">
-                      <span className="text-3xl font-black tracking-tight">{plan.price}</span>
-                      {plan.period && <span className="text-sm opacity-60 font-medium">{plan.period}</span>}
-                    </div>
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-saffron to-copper text-white text-sm font-medium flex items-center gap-1">
+                    <Star className="w-4 h-4 fill-white" />
+                    Most Popular
                   </div>
+                )}
 
-                  <ul className="space-y-4 mb-10">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3">
-                        <Check className={`w-4 h-4 ${plan.popular ? "text-white" : "text-black"}`} />
-                        <span className={`text-sm ${plan.popular ? "text-neutral-300" : "text-muted-foreground"}`}>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-semibold">{plan.name}</h3>
+                  <p className="text-sm text-saffron/70">{plan.nameHi}</p>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold">{plan.price}</span>
+                    <span className="text-muted-foreground">{plan.period}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
                 </div>
 
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2">
+                      <Check className="w-4 h-4 text-saffron" />
+                      <span className="text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
                 <Button
-                  className={`w-full py-6 text-base font-semibold rounded-xl transition-all
-                    ${plan.popular
-                      ? "bg-white text-black hover:bg-neutral-200"
-                      : "bg-black text-white hover:opacity-80"
+                  className={`w-full ${plan.popular
+                      ? "bg-gradient-to-r from-saffron to-copper text-white"
+                      : "bg-muted text-foreground hover:bg-muted/80"
                     }`}
                   asChild
                 >
@@ -114,21 +131,32 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 border-t border-border">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight mb-16 text-center">Common Questions</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            {[
-              { q: "Can I change plans?", a: "Yes, upgrade or downgrade anytime." },
-              { q: "Is there a free trial?", a: "The Free plan is free forever." },
-              { q: "Methods accepted?", a: "All major credit cards and UPI." },
-              { q: "Can I cancel?", a: "Yes, cancel anytime instantly." },
-            ].map((faq, i) => (
-              <div key={i}>
-                <h4 className="font-bold mb-3">{faq.q}</h4>
-                <p className="text-muted-foreground">{faq.a}</p>
-              </div>
-            ))}
+      <section className="py-12">
+        <div className="w-full px-4 md:px-8 lg:px-12">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl font-semibold mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-4 text-left">
+              {[
+                { q: "Can I change plans later?", a: "Yes, you can upgrade or downgrade your plan at any time." },
+                {
+                  q: "Is there a free trial?",
+                  a: "Yes, start with our free plan to experience Vedic Mate before upgrading.",
+                },
+                {
+                  q: "What payment methods do you accept?",
+                  a: "We accept all major credit cards, UPI, and net banking.",
+                },
+                {
+                  q: "Can I cancel anytime?",
+                  a: "Yes, you can cancel your subscription at any time with no questions asked.",
+                },
+              ].map((faq, i) => (
+                <div key={i} className="p-4 rounded-xl bg-card border border-border/50">
+                  <h4 className="font-semibold mb-2">{faq.q}</h4>
+                  <p className="text-sm text-muted-foreground">{faq.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

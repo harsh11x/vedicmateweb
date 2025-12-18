@@ -1,86 +1,175 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Apple, Play } from "lucide-react"
+import { Apple, Play, Star, Smartphone, MessageCircle, Phone } from "lucide-react"
+import { DecorativeMandala } from "@/components/illustrations/decorative-mandala"
+import { PanditDoodle } from "@/components/illustrations/pandit-doodle"
+import { SacredKalash, SacredDiya } from "@/components/illustrations/sacred-elements"
 import Link from "next/link"
 
 export function DownloadSection() {
   return (
     <section
       id="download"
-      className="py-16 md:py-32 px-6 bg-black text-white"
+      className="py-24 md:py-32 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden"
     >
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div>
-            <div className="mb-4 flex items-center gap-2 text-white/50">
-              <span className="h-px w-8 bg-white"></span>
-              <span className="text-xs uppercase tracking-widest font-bold">Mobile App</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter mb-6 md:mb-8 leading-[0.9]">
-              Wisdom in<br />Your Pocket.
+      {/* Background mandala */}
+      <DecorativeMandala className="absolute -right-40 top-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-[0.03] pointer-events-none" />
+
+      <div className="absolute left-10 top-20 opacity-20 hidden xl:block">
+        <SacredKalash className="w-24 h-36" />
+      </div>
+      <div className="absolute right-20 top-10 opacity-20 hidden xl:block">
+        <SacredDiya className="w-20 h-24" />
+      </div>
+
+      <div className="w-full px-4 md:px-8 lg:px-12 relative">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Content */}
+          <div className="order-2 lg:order-1">
+            <span className="inline-block text-saffron text-sm font-medium mb-4">Download App • ऐप डाउनलोड करें</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4">
+              Carry <span className="gradient-text">divine wisdom</span> in your pocket
             </h2>
-            <p className="text-lg md:text-xl text-white/60 mb-8 md:mb-12 max-w-xl leading-relaxed">
-              Access 34 AI Pandits, 24/7 consultation, and instant guidance. Anywhere, anytime.
+            <p className="text-lg text-muted-foreground mb-8">
+              Get instant access to 34 AI Pandits, personalized horoscopes, and spiritual guidance. Available in 15+
+              Indian languages.
             </p>
 
+            {/* Features */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {[
+                { icon: MessageCircle, text: "Chat Consultation" },
+                { icon: Phone, text: "Voice Calls" },
+                { icon: Smartphone, text: "Offline Mode" },
+                { icon: Star, text: "Daily Horoscope" },
+              ].map((feature, i) => (
+                <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border/50">
+                  <feature.icon className="w-5 h-5 text-saffron" />
+                  <span className="text-sm font-medium">{feature.text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Stats */}
+            <div className="flex items-center gap-6 mb-8">
+              <div>
+                <p className="text-2xl font-bold">100K+</p>
+                <p className="text-xs text-muted-foreground">Downloads</p>
+              </div>
+              <div className="w-px h-10 bg-border" />
+              <div>
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <span className="text-2xl font-bold">4.8</span>
+                </div>
+                <p className="text-xs text-muted-foreground">App Rating</p>
+              </div>
+              <div className="w-px h-10 bg-border" />
+              <div>
+                <p className="text-2xl font-bold">50K+</p>
+                <p className="text-xs text-muted-foreground">Reviews</p>
+              </div>
+            </div>
+
+            {/* Download Buttons - Added proper links */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-white/90 h-14 md:h-16 px-8 gap-4 rounded-full w-full sm:w-auto"
+                className="bg-foreground hover:bg-foreground/90 text-background h-14 px-6 gap-3"
                 asChild
               >
                 <Link href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
                   <Apple className="w-6 h-6" />
                   <div className="text-left">
-                    <p className="text-[10px] uppercase tracking-wider opacity-60 leading-none mb-1">Download on the</p>
-                    <p className="font-bold leading-none">App Store</p>
+                    <p className="text-[10px] opacity-80 leading-none">Download on the</p>
+                    <p className="font-semibold">App Store</p>
                   </div>
                 </Link>
               </Button>
               <Button
                 size="lg"
-                className="bg-transparent border border-white/20 text-white hover:bg-white/10 h-14 md:h-16 px-8 gap-4 rounded-full w-full sm:w-auto"
+                className="bg-foreground hover:bg-foreground/90 text-background h-14 px-6 gap-3"
                 asChild
               >
                 <Link href="https://play.google.com" target="_blank" rel="noopener noreferrer">
                   <Play className="w-6 h-6 fill-current" />
                   <div className="text-left">
-                    <p className="text-[10px] uppercase tracking-wider opacity-60 leading-none mb-1">Get it on</p>
-                    <p className="font-bold leading-none">Google Play</p>
+                    <p className="text-[10px] opacity-80 leading-none">Get it on</p>
+                    <p className="font-semibold">Google Play</p>
                   </div>
                 </Link>
               </Button>
             </div>
-
-            <div className="mt-12 md:mt-16 flex gap-8 md:gap-12 border-t border-white/10 pt-8">
-              <div>
-                <p className="text-2xl md:text-3xl font-bold">100K+</p>
-                <p className="text-xs md:text-sm text-white/50 uppercase tracking-widest">Downloads</p>
-              </div>
-              <div>
-                <p className="text-2xl md:text-3xl font-bold">4.8</p>
-                <p className="text-xs md:text-sm text-white/50 uppercase tracking-widest">Rating</p>
-              </div>
-            </div>
           </div>
 
-          <div className="relative flex justify-center lg:justify-end mt-8 lg:mt-0">
-            {/* Abstract representation of a phone or simplified mockup */}
-            <div className="w-64 md:w-80 h-[480px] md:h-[600px] border-2 border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-3 md:p-4 bg-white/5 backdrop-blur-sm relative overflow-hidden">
-              <div className="w-full h-full bg-black rounded-[2rem] md:rounded-[2.5rem] overflow-hidden flex flex-col p-4 md:p-6">
-                <div className="h-6 md:h-8 w-20 md:w-24 bg-white/10 rounded-full mx-auto mb-6 md:mb-8"></div>
-                <div className="space-y-3 md:space-y-4">
-                  <div className="h-16 md:h-20 bg-white/5 rounded-2xl w-full"></div>
-                  <div className="flex gap-3 md:gap-4">
-                    <div className="h-24 md:h-32 bg-white/5 rounded-2xl w-full"></div>
-                    <div className="h-24 md:h-32 bg-white/5 rounded-2xl w-full"></div>
+          {/* Phone Mockup with Pandit */}
+          <div className="order-1 lg:order-2 flex justify-center">
+            <div className="relative">
+              <div
+                className="absolute -left-24 bottom-10 hidden lg:block animate-float"
+                style={{ animationDelay: "1s" }}
+              >
+                <PanditDoodle variant="male" className="w-32 h-48 drop-shadow-lg" />
+              </div>
+
+              {/* Phone Frame */}
+              <div className="relative w-72 h-[580px] bg-foreground rounded-[3rem] p-3 shadow-2xl shadow-foreground/20">
+                <div className="w-full h-full bg-background rounded-[2.5rem] overflow-hidden relative">
+                  {/* App UI mockup */}
+                  <div className="p-6 space-y-4">
+                    {/* Header */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-lg font-bold">Vedic Mate</p>
+                        <p className="text-xs text-saffron">वैदिक मेट</p>
+                      </div>
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-saffron to-copper" />
+                    </div>
+
+                    {/* Greeting */}
+                    <div className="p-4 rounded-2xl bg-gradient-to-r from-saffron/10 to-gold/10 border border-saffron/20">
+                      <p className="text-sm text-muted-foreground">Good Morning</p>
+                      <p className="font-semibold">Priya Sharma</p>
+                      <p className="text-xs text-saffron mt-1">शुभ प्रभात, प्रिया जी</p>
+                    </div>
+
+                    {/* Today's horoscope */}
+                    <div className="p-4 rounded-2xl bg-card border border-border/50">
+                      <p className="text-xs text-muted-foreground mb-2">Today's Horoscope • आज का राशिफल</p>
+                      <p className="text-sm">The stars align favorably for new beginnings...</p>
+                    </div>
+
+                    {/* Quick actions */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 text-white text-center">
+                        <MessageCircle className="w-5 h-5 mx-auto mb-1" />
+                        <p className="text-xs font-medium">Chat</p>
+                      </div>
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 text-white text-center">
+                        <Phone className="w-5 h-5 mx-auto mb-1" />
+                        <p className="text-xs font-medium">Call</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="h-32 md:h-40 bg-white/5 rounded-2xl w-full"></div>
                 </div>
-                <div className="mt-auto h-12 md:h-16 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-black font-bold text-sm md:text-base">Chat Now</span>
-                </div>
+
+                {/* Notch */}
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-foreground rounded-full" />
+              </div>
+
+              {/* Floating badges */}
+              <div className="absolute -top-4 -right-4 bg-card rounded-full px-4 py-2 shadow-xl border border-border/50 flex items-center gap-2">
+                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                <span className="font-bold">4.8</span>
+              </div>
+
+              <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-saffron to-copper text-white rounded-full px-4 py-2 shadow-xl text-sm font-medium">
+                15+ Languages
+              </div>
+
+              <div className="absolute -right-20 top-20 hidden lg:block animate-float" style={{ animationDelay: "2s" }}>
+                <PanditDoodle variant="female" className="w-28 h-44 drop-shadow-lg" />
               </div>
             </div>
           </div>

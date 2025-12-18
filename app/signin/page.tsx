@@ -1,97 +1,95 @@
 "use client"
 
-import { useState } from "react"
+import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { CinematicTemple } from "@/components/cinematic-temple"
 import Link from "next/link"
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { auth } from "@/lib/firebase"
-import { useRouter } from "next/navigation"
-import { Chrome as Google } from "lucide-react"
 
 export default function SignInPage() {
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-
-  const handleEmailSignIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError("")
-
-    const formData = new FormData(e.target as HTMLFormElement)
-    const email = formData.get("email") as string
-    const password = formData.get("password") as string
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password)
-      router.push("/pandits")
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in")
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleGoogleSignIn = async () => {
-    try {
-      const provider = new GoogleAuthProvider()
-      await signInWithPopup(auth, provider)
-      router.push("/pandits")
-    } catch (err: any) {
-      setError(err.message || "Google sign in failed")
-    }
-  }
-
   return (
-    <main className="min-h-screen bg-background text-foreground flex items-center justify-center p-6 relative overflow-hidden">
+    <main className="min-h-screen bg-[#050302] text-[#F5E6D3] font-sans relative overflow-hidden">
+      {/* 3D Background */}
+      <div className="fixed inset-0 z-0">
+        <CinematicTemple mode="seated" />
+      </div>
 
-      {/* Abstract Zen Element */}
-      <div className="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] border border-border rounded-full opacity-20 pointer-events-none" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[40vw] h-[40vw] border border-border rounded-full opacity-20 pointer-events-none" />
+      {/* Overlay Gradient */}
+      <div className="fixed inset-0 z-10 bg-black/40 pointer-events-none" />
 
-      <div className="w-full max-w-sm z-10">
-        <div className="mb-10 text-center">
-          <Link href="/" className="text-3xl font-black tracking-tighter block mb-2">VedicMate.</Link>
-          <p className="text-muted-foreground text-sm">Sign in to access your digital sanctum.</p>
-        </div>
-
-        <div className="bg-card border border-border p-8 rounded-2xl shadow-xl">
-          <form onSubmit={handleEmailSignIn} className="space-y-4">
-            {error && <p className="text-xs text-red-500 text-center">{error}</p>}
-
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" placeholder="name@example.com" required className="bg-input border-transparent focus:border-black" />
+      <div className="relative z-20 min-h-screen flex items-center justify-center px-4">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 rounded-2xl bg-[#D4AF37]/20 backdrop-blur-md border border-[#D4AF37]/30 flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+              <span className="text-[#D4AF37] font-serif font-bold text-3xl">ॐ</span>
             </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <Label htmlFor="password">Password</Label>
-                <Link href="/forgot-password" className="text-xs text-muted-foreground hover:text-black">Forgot?</Link>
-              </div>
-              <Input id="password" name="password" type="password" required className="bg-input border-transparent focus:border-black" />
-            </div>
-
-            <Button type="submit" className="w-full btn-zen" disabled={loading}>
-              {loading ? "Signing In..." : "Sign In"}
-            </Button>
-          </form>
-
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-border" /></div>
-            <div className="relative flex justify-center text-xs uppercase"><span className="bg-card px-2 text-muted-foreground">Or</span></div>
+            <h1 className="text-3xl font-serif font-semibold mb-2 text-[#F5E6D3]">Welcome Back</h1>
+            <p className="text-sm text-[#D4AF37]/80">पुनः स्वागत है</p>
           </div>
 
-          <Button variant="outline" className="w-full btn-zen-outline gap-2" onClick={handleGoogleSignIn}>
-            <Google className="w-4 h-4" /> Continue with Google
-          </Button>
-        </div>
+          <div className="bg-[#1A1410]/60 backdrop-blur-xl border border-[#D4AF37]/20 rounded-3xl p-8 shadow-2xl">
+            <form className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-[#D4AF37]">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="devotee@example.com"
+                  className="bg-[#050302]/50 border-[#D4AF37]/20 text-[#F5E6D3] placeholder:text-[#8B7355] focus:border-[#D4AF37]"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-[#D4AF37]">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  className="bg-[#050302]/50 border-[#D4AF37]/20 text-[#F5E6D3] placeholder:text-[#8B7355] focus:border-[#D4AF37]"
+                />
+              </div>
 
-        <p className="text-center text-sm text-muted-foreground mt-8">
-          New here? <Link href="/signup" className="text-black font-semibold hover:underline">Create account</Link>
-        </p>
+              <div className="flex items-center justify-between text-sm">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" className="rounded border-[#D4AF37]/40 bg-transparent text-[#D4AF37] focus:ring-[#D4AF37]" />
+                  <span className="text-[#8B7355]">Remember me</span>
+                </label>
+                <Link href="/forgot-password" className="text-[#D4AF37] hover:text-[#FFD700] transition-colors">
+                  Forgot password?
+                </Link>
+              </div>
+
+              <Button className="w-full bg-[#D4AF37] text-[#2D1B18] hover:bg-[#FFD700] font-medium h-11">
+                Sign In
+              </Button>
+            </form>
+
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-[#D4AF37]/10" />
+              </div>
+              <div className="relative flex justify-center text-xs">
+                <span className="bg-[#1A1410]/0 px-2 text-[#8B7355] bg-black/20 backdrop-blur-sm rounded-full">or continue with</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <Button variant="outline" className="w-full bg-transparent border-[#D4AF37]/20 text-[#F5E6D3] hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]">
+                Google
+              </Button>
+              <Button variant="outline" className="w-full bg-transparent border-[#D4AF37]/20 text-[#F5E6D3] hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]">
+                Phone
+              </Button>
+            </div>
+
+            <p className="text-center text-sm text-[#8B7355] mt-6">
+              Don't have an account?{" "}
+              <Link href="/signup" className="text-[#D4AF37] hover:text-[#FFD700] font-medium transition-colors">
+                Sign up
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </main>
   )
