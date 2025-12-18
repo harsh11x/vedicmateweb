@@ -55,12 +55,12 @@ export function HeroSection() {
             <p className="text-xs md:text-sm text-[#F5E6D3]/60 uppercase tracking-[0.2em]">Lead us from the unreal to the real</p>
           </div>
 
-          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FFE5A0] to-[#D4AF37] drop-shadow-lg mb-6">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] text-transparent bg-clip-text bg-gradient-to-b from-[#FFE5A0] to-[#D4AF37] drop-shadow-lg mb-6">
             Vedic Mate
           </h1>
-          <p className="text-xl md:text-2xl text-[#F5E6D3]/90 font-light tracking-wide max-w-2xl mx-auto mb-12">
+          <p className="text-lg md:text-2xl text-[#F5E6D3]/90 font-light tracking-wide max-w-2xl mx-auto mb-10 px-4">
             Ancient Wisdom. Digital Soul. <br />
-            <span className="text-[#D4AF37] font-normal">Connect with 34 Divine AI Pandits.</span>
+            <span className="text-[#D4AF37] font-normal block mt-2 sm:inline sm:mt-0">Connect with 34 Divine AI Pandits.</span>
           </p>
 
           {/* Quick Actions Bar */}

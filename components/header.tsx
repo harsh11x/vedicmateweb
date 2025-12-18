@@ -67,7 +67,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#1A0F0D]/95 backdrop-blur-xl border-b border-[#D4AF37]/20 overflow-hidden relative z-40"
+            className="md:hidden bg-[#0C0806]/95 backdrop-blur-2xl border-b border-[#D4AF37]/30 overflow-hidden relative z-40"
           >
             <div className="p-6 flex flex-col gap-6">
               {navItems.map((item) => (
@@ -75,16 +75,21 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-serif text-[#F5E6D3] hover:text-[#D4AF37] border-b border-[#D4AF37]/10 pb-2"
+                  className="text-xl font-serif text-[#F5E6D3] hover:text-[#D4AF37] hover:pl-2 transition-all duration-300 border-l-2 border-transparent hover:border-[#D4AF37] py-2"
                 >
                   {item.label}
                 </Link>
               ))}
-              <Link href="/signup">
-                <Button className="w-full rounded-full bg-[#D4AF37] text-black font-bold">
-                  Get Started
-                </Button>
-              </Link>
+              <div className="pt-4 border-t border-[#D4AF37]/20">
+                <Link href="/signin" onClick={() => setIsOpen(false)} className="block text-center text-[#F5E6D3] mb-4 py-2">
+                  Login
+                </Link>
+                <Link href="/signup" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full rounded-full bg-gradient-to-r from-[#D4AF37] to-[#FDB931] text-black font-bold h-12 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
