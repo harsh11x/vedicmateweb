@@ -12,7 +12,7 @@ import { useAuth } from "@/components/auth-context"
 
 export default function SignInPage() {
   const router = useRouter()
-  constsearchParams = useSearchParams()
+  const searchParams = useSearchParams()
   const { login } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
 

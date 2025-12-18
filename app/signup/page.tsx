@@ -1,13 +1,33 @@
-"use client"
-
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CinematicTemple } from "@/components/cinematic-temple"
 import Link from "next/link"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useAuth } from "@/components/auth-context"
 
 export default function SignUpPage() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const { login } = useAuth()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSignup = async () => {
+    setIsLoading(true)
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 800))
+    login()
+
+    // Redirect logic
+    const next = searchParams.get('next')
+    if (next) {
+      router.push(next)
+    } else {
+      router.push('/chat/1') // Default dashboard
+    }
+  }
   return (
     <main className="min-h-screen bg-[#050302] text-[#F5E6D3] font-sans relative overflow-hidden">
       {/* 3D Background */}
@@ -29,7 +49,10 @@ export default function SignUpPage() {
           </div>
 
           <div className="bg-[#1A1410]/60 backdrop-blur-xl border border-[#D4AF37]/20 rounded-3xl p-8 shadow-2xl">
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={(e) => {
+              e.preventDefault()
+              handleSignup()
+            }}>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <Label htmlFor="firstName" className="text-[#D4AF37]">First Name</Label>
@@ -67,8 +90,8 @@ export default function SignUpPage() {
                 </span>
               </div>
 
-              <Button className="w-full bg-[#D4AF37] text-[#2D1B18] hover:bg-[#FFD700] font-medium h-11">
-                Create Account
+              <Button type="submit" className="w-full bg-[#D4AF37] text-[#2D1B18] hover:bg-[#FFD700] font-medium h-11" disabled={isLoading}>
+                {isLoading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
 
