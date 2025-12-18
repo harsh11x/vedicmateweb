@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from "react"
 import { useState } from "react"
 import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
@@ -10,7 +11,7 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useAuth } from "@/components/auth-context"
 
-export default function SignInPage() {
+function SignInContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { login } = useAuth()
@@ -30,6 +31,7 @@ export default function SignInPage() {
       router.push('/chat/1') // Default dashboard
     }
   }
+
   return (
     <main className="min-h-screen bg-[#050302] text-[#F5E6D3] font-sans relative overflow-hidden">
       {/* 3D Background */}
@@ -117,5 +119,13 @@ export default function SignInPage() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#050302]" />}>
+      <SignInContent />
+    </Suspense>
   )
 }
