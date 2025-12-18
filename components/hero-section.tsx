@@ -21,39 +21,32 @@ export function HeroSection() {
     restDelta: 0.001
   })
 
-  // --- TRANSFORMS ---
-  // 1. Text fades out as we enter
-  // 1. Text fades out smoothly as we approach the end of the hero scroll
-  // Syncing with the "Sanctum" reveal so it feels like passing through
-  const introOpacity = useTransform(springScroll, [0.5, 0.9], [1, 0])
-  const introScale = useTransform(springScroll, [0.5, 0.9], [1, 0.9])
+  // --- TRANSFORMS (Scroll Interactions) ---
 
-  // 2. The Gate Opens (0.2 -> 0.6)
-  const gateLeftX = useTransform(springScroll, [0.2, 0.6], ["0%", "-100%"])
-  const gateRightX = useTransform(springScroll, [0.2, 0.6], ["0%", "100%"])
-  const gateOpacity = useTransform(springScroll, [0.1, 0.2, 0.6, 0.7], [0, 1, 1, 0])
+  // 1. Text fades out as we scroll down to leave the hero section
+  const introOpacity = useTransform(springScroll, [0.4, 0.8], [1, 0])
+  const introScale = useTransform(springScroll, [0.4, 0.8], [1, 0.9])
 
-  // 3. Inner Sanctum Reveal (0.6 -> 1.0)
-  const sanctumOpacity = useTransform(springScroll, [0.6, 0.8], [0, 1])
-  const sanctumScale = useTransform(springScroll, [0.6, 1], [0.8, 1])
+  // 2. Parallax Background Movement
+  const bgY = useTransform(springScroll, [0, 1], ["0%", "20%"])
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] w-full bg-[#0C0806] overflow-hidden">
+    <section ref={containerRef} className="relative h-[150vh] w-full bg-[#0C0806] overflow-hidden">
 
       {/* 1. Cinematic Background (Sticky) */}
       <div className="fixed inset-0 z-0 h-screen pointer-events-none">
         <CinematicTemple mode="intro" />
       </div>
 
-      {/* 2. Intro Content (Initial View) */}
+      {/* 2. Intro Content (Vedic Mate Title) - APPEARS AFTER GATE OPENS */}
       <motion.div
         style={{ opacity: introOpacity, scale: introScale }}
         className="fixed inset-0 z-10 flex flex-col items-center justify-center p-4 text-center pointer-events-none"
       >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 2.2, duration: 1.2, ease: "easeOut" }} // Delays title until gates open
           className="max-w-5xl"
         >
           {/* Trust Signal: Sanskrit Shloka */}
@@ -70,7 +63,7 @@ export function HeroSection() {
             <span className="text-[#D4AF37] font-normal">Connect with 34 Divine AI Pandits.</span>
           </p>
 
-          {/* Quick Actions Bar (AstroSage-style Utility) */}
+          {/* Quick Actions Bar */}
           <div className="pointer-events-auto flex flex-wrap justify-center gap-4 md:gap-6 bg-[#1A0F0D]/80 backdrop-blur-xl border border-[#D4AF37]/20 p-4 rounded-2xl shadow-2xl">
             <QuickAction icon={Star} label="Daily Horoscope" href="/horoscope" />
             <QuickAction icon={ScrollText} label="Kundli Gen" href="/kundli" />
@@ -79,38 +72,35 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 animate-bounce cursor-default">
-          <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase opacity-70">Enter the Temple</span>
-        </div>
+        {/* Scroll Indicator - Fades in last */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ delay: 3.5, duration: 1 }}
+          className="absolute bottom-10 animate-bounce cursor-default"
+        >
+          <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase">Enter the Temple</span>
+        </motion.div>
       </motion.div>
 
-      {/* 3. The Gate (Visual Metaphor) */}
-      <div className="fixed inset-0 z-20 pointer-events-none flex" style={{ opacity: 0 }}>
-        {/* Use framer motion logic to actually render this, but for now strictly visual */}
+      {/* 3. The Gate (Visual Metaphor) - TIME BASED OPENING */}
+      {/* Gates start closed (visible) and open on load. Sanctum text removed. */}
+      <div className="fixed inset-0 z-20 pointer-events-none flex items-center justify-center">
+        {/* Left Gate */}
+        <motion.div
+          initial={{ x: "0%" }}
+          animate={{ x: "-100%" }}
+          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1], delay: 0.5 }} // Smooth cinematic ease
+          className="w-1/2 h-full bg-[#0C0806] border-r border-[#D4AF37]/30 bg-[url('/assets/temple-pattern.png')] opacity-100 shadow-[20px_0_50px_rgba(0,0,0,0.8)]"
+        />
+        {/* Right Gate */}
+        <motion.div
+          initial={{ x: "0%" }}
+          animate={{ x: "100%" }}
+          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+          className="w-1/2 h-full bg-[#0C0806] border-l border-[#D4AF37]/30 bg-[url('/assets/temple-pattern.png')] opacity-100 shadow-[-20px_0_50px_rgba(0,0,0,0.8)]"
+        />
       </div>
-
-      <motion.div
-        style={{ opacity: gateOpacity }}
-        className="fixed inset-0 z-20 pointer-events-none flex items-center justify-center"
-      >
-        <motion.div style={{ x: gateLeftX }} className="w-1/2 h-full bg-[#0C0806] border-r border-[#D4AF37]/30 bg-[url('/assets/temple-pattern.png')] opacity-90" />
-        <motion.div style={{ x: gateRightX }} className="w-1/2 h-full bg-[#0C0806] border-l border-[#D4AF37]/30 bg-[url('/assets/temple-pattern.png')] opacity-90" />
-
-        <div className="absolute text-center">
-          <h2 className="text-4xl md:text-6xl font-serif text-[#D4AF37] tracking-widest uppercase opacity-50">Sanctum</h2>
-        </div>
-      </motion.div>
-
-
-      {/* 4. Final CTA (Bottom of Scroll) */}
-      {/* 4. Final CTA removed as per user request to show only the sanctum visuals */}
-      <motion.div
-        style={{ opacity: sanctumOpacity, scale: sanctumScale }}
-        className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none"
-      >
-        {/* Dialog removed. User wants only the sanctum background to be visible on scroll. */}
-      </motion.div>
 
     </section>
   )

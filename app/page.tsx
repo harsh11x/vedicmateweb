@@ -13,13 +13,17 @@ export default function Home() {
     <main className="min-h-screen bg-background paper-texture">
       <Header />
       <HeroSection />
-      <FeaturesSection />
-      <LanguagesSection />
-      <PanditsSection />
-      <ServicesSection />
-      <TestimonialsSection />
-      <DownloadSection />
-      <Footer />
+
+      {/* Morph Glass Wrapper for Lower Content */}
+      <div className="relative z-10 bg-[#0C0806]/90 backdrop-blur-3xl border-t border-[#D4AF37]/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+        <FeaturesSection />
+        <LanguagesSection />
+        <PanditsSection />
+        <ServicesSection />
+        <TestimonialsSection />
+        <DownloadSection />
+        <Footer />
+      </div>
     </main>
   )
 }

@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, MessageCircle, Phone, Star, Sparkles } from "lucide-react"
-import { PanditDoodle } from "@/components/illustrations/pandit-doodle"
 import Link from "next/link"
 
 const pandits = [
@@ -105,13 +104,6 @@ export function PanditsSection() {
 
   return (
     <section id="pandits" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute left-0 top-20 opacity-10 pointer-events-none hidden lg:block">
-        <PanditDoodle variant="male" className="w-56 h-80" />
-      </div>
-      <div className="absolute right-0 bottom-20 opacity-10 pointer-events-none hidden lg:block">
-        <PanditDoodle variant="female" className="w-52 h-76" />
-      </div>
-
       <div className="w-full px-4 md:px-8 lg:px-12 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
@@ -166,13 +158,13 @@ export function PanditsSection() {
                 className={`absolute inset-0 bg-gradient-to-br ${pandit.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`}
               />
 
-              {/* Header - Added small pandit doodle */}
+              {/* Header - Clean Avatar */}
               <div className="flex items-start gap-4 mb-6 relative">
                 <div className="relative">
                   <div
                     className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${pandit.gradient} flex items-center justify-center text-xl font-bold text-white shadow-lg group-hover:scale-105 transition-transform duration-300 overflow-hidden`}
                   >
-                    <PanditDoodle variant={pandit.gender} className="w-14 h-20 -mb-2" />
+                    {pandit.avatar}
                   </div>
                   {/* Online indicator */}
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background" />
