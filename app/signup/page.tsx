@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
