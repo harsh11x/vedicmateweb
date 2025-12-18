@@ -110,10 +110,10 @@ export function ServicesSection() {
               {/* Content */}
               <div className="relative">
                 <h3 className={`font-serif text-[#F5E6D3] mb-1 ${service.featured ? "text-2xl" : "text-base"}`}>{service.title}</h3>
-                <p className={`text-[#D4AF37]/80 mb-3 ${service.featured ? "text-base" : "text-xs"}`}>
+                <p className={`text-[#F5E6D3]/90 mb-3 ${service.featured ? "text-base" : "text-xs"}`}>
                   {service.titleHi}
                 </p>
-                <p className={`text-[#F5E6D3]/70 leading-relaxed ${service.featured ? "text-base" : "text-sm"}`}>
+                <p className={`text-[#F5E6D3]/80 leading-relaxed ${service.featured ? "text-base" : "text-sm"}`}>
                   {service.description}
                 </p>
               </div>

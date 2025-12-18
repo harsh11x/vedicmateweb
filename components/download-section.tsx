@@ -30,7 +30,7 @@ export function DownloadSection() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4">
               Carry <span className="gradient-text">divine wisdom</span> in your pocket
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-lg text-[#F5E6D3]/80 mb-8">
               Get instant access to 34 AI Pandits, personalized horoscopes, and spiritual guidance. Available in 15+
               Indian languages.
             </p>

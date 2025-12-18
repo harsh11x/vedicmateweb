@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "luci
 
 export function Footer() {
   return (
-    <footer className="bg-[#1A0F0D] text-[#F5E6D3]/60 relative border-t border-[#D4AF37]/20 pt-20 pb-10">
+    <footer className="bg-[#1A0F0D] text-[#F5E6D3]/90 relative border-t border-[#D4AF37]/20 pt-20 pb-10">
       {/* Decorative Top Border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B8860B] via-[#FFD700] to-[#B8860B]" />
 
@@ -14,9 +14,9 @@ export function Footer() {
           <Link href="/" className="font-serif text-2xl text-[#F5E6D3] tracking-tight mb-2 block">
             Vedic Mate.
           </Link>
-          <span className="block text-[#D4AF37] font-serif text-sm mb-4">धर्म संस्थापनार्थाय (For the sake of Dharma)</span>
+          <span className="block text-[#F5E6D3] font-serif text-sm mb-4 opacity-90">धर्म संस्थापनार्थाय (For the sake of Dharma)</span>
 
-          <p className="leading-relaxed mb-6 text-[#F5E6D3]/70">
+          <p className="leading-relaxed mb-6 text-[#F5E6D3] opacity-90">
             The most advanced digital sanctum for Vedic astrology.
             Blending ancient scripture with modern intelligence.
           </p>
@@ -31,7 +31,7 @@ export function Footer() {
 
         {/* Quick Links (AstroSage Density) */}
         <div>
-          <h4 className="text-[#D4AF37] font-serif font-medium mb-6 uppercase tracking-widest text-xs">Astro Services</h4>
+          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Astro Services</h4>
           <ul className="space-y-3">
             <FooterLink href="/horoscope">Daily Horoscope</FooterLink>
             <FooterLink href="/kundli">Free Kundli</FooterLink>
@@ -42,7 +42,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-[#D4AF37] font-serif font-medium mb-6 uppercase tracking-widest text-xs">Vedic Tools</h4>
+          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Vedic Tools</h4>
           <ul className="space-y-3">
             <FooterLink href="/gemstones">Gemstone Suggestion</FooterLink>
             <FooterLink href="/rudraksha">Rudraksha Guide</FooterLink>
@@ -54,19 +54,19 @@ export function Footer() {
 
         {/* Contact / Trust */}
         <div>
-          <h4 className="text-[#D4AF37] font-serif font-medium mb-6 uppercase tracking-widest text-xs">Sanctum Support</h4>
+          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Sanctum Support</h4>
           <ul className="space-y-4">
             <li className="flex items-start gap-3">
               <MapPin className="w-5 h-5 text-[#D4AF37] shrink-0" />
-              <span>Vedic Research Inst, Varanasi, India</span>
+              <span className="text-[#F5E6D3]">Vedic Research Inst, Varanasi, India</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone className="w-5 h-5 text-[#D4AF37] shrink-0" />
-              <span>+91 98765 43210</span>
+              <span className="text-[#F5E6D3]">+91 98765 43210</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-[#D4AF37] shrink-0" />
-              <span>pandits@vedicmate.com</span>
+              <span className="text-[#F5E6D3]">pandits@vedicmate.com</span>
             </li>
           </ul>
         </div>
@@ -74,7 +74,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Legal Bar */}
-      <div className="container mx-auto px-6 mt-16 pt-8 border-t border-[#D4AF37]/10 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+      <div className="container mx-auto px-6 mt-16 pt-8 border-t border-[#D4AF37]/10 flex flex-col md:flex-row justify-between items-center text-xs text-[#F5E6D3] opacity-80">
         <p>© 2025 Vedic Mate. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
           <Link href="/privacy" className="hover:text-[#D4AF37]">Privacy Policy</Link>

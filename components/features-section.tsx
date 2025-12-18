@@ -88,8 +88,8 @@ export function FeaturesSection() {
 
               <div className="relative">
                 <h3 className="text-lg font-serif text-[#F5E6D3] mb-1">{feature.title}</h3>
-                <p className="text-sm text-[#D4AF37] mb-3">{feature.titleHi}</p>
-                <p className="text-[#F5E6D3]/70 leading-relaxed">{feature.description}</p>
+                <p className="text-sm text-[#F5E6D3]/90 mb-3">{feature.titleHi}</p>
+                <p className="text-[#F5E6D3]/80 leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}
