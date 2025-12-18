@@ -10,42 +10,42 @@ const features = [
     title: "34 AI Pandits",
     titleHi: "३४ AI पंडित",
     description: "Male and female pandits with 10-35 years of encoded Vedic wisdom and expertise.",
-    color: "from-orange-500 to-red-500",
+    color: "from-[#D4AF37] to-[#B8860B]", // Gold
   },
   {
     icon: Globe,
     title: "15+ Languages",
     titleHi: "१५+ भाषाएं",
     description: "Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi & more.",
-    color: "from-blue-500 to-purple-500",
+    color: "from-[#FF9933] to-[#FF4500]", // Saffron
   },
   {
     icon: Clock,
     title: "24/7 Available",
     titleHi: "२४/७ उपलब्ध",
     description: "No appointments. Get divine guidance any time, day or night, 365 days a year.",
-    color: "from-green-500 to-teal-500",
+    color: "from-[#8B4513] to-[#4A0E0E]", // Earth
   },
   {
     icon: Shield,
     title: "100% Private",
     titleHi: "पूर्ण गोपनीयता",
     description: "Your consultations are completely confidential. No judgment, only compassion.",
-    color: "from-indigo-500 to-blue-500",
+    color: "from-[#D4AF37] to-[#FF9933]", // Gold-Saffron
   },
   {
     icon: MessageCircle,
     title: "Chat & Voice",
     titleHi: "चैट और कॉल",
     description: "Type or speak naturally. Choose your preferred consultation mode.",
-    color: "from-pink-500 to-rose-500",
+    color: "from-[#B8860B] to-[#4A0E0E]", // Dark Gold
   },
   {
     icon: BookOpen,
     title: "Authentic Wisdom",
     titleHi: "प्रामाणिक ज्ञान",
     description: "Trained on thousands of years of Vedic texts, scriptures and principles.",
-    color: "from-amber-500 to-orange-500",
+    color: "from-[#FFD700] to-[#DAA520]", // Bright Gold
   },
 ]
 
@@ -81,11 +81,11 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative p-6 rounded-2xl bg-card border border-border/50 hover:border-saffron/30 hover:shadow-xl hover:shadow-saffron/5 transition-all duration-500"
+              className="group relative p-6 rounded-2xl bg-[#1A0F0D]/60 backdrop-blur-md border border-[#D4AF37]/20 hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] transition-all duration-500"
             >
               {/* Gradient background on hover */}
               <div
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`}
+                className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500`}
               />
 
               <div
@@ -95,9 +95,9 @@ export function FeaturesSection() {
               </div>
 
               <div className="relative">
-                <h3 className="text-lg font-semibold mb-1">{feature.title}</h3>
-                <p className="text-sm text-saffron/70 mb-3">{feature.titleHi}</p>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                <h3 className="text-lg font-serif text-[#F5E6D3] mb-1">{feature.title}</h3>
+                <p className="text-sm text-[#D4AF37] mb-3">{feature.titleHi}</p>
+                <p className="text-[#F5E6D3]/70 leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}

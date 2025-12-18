@@ -10,7 +10,7 @@ const services = [
     titleHi: "कुंडली निर्माण",
     description: "Complete birth chart with planetary positions and life predictions.",
     featured: true,
-    color: "from-orange-500 to-amber-500",
+    color: "from-[#D4AF37] to-[#B8860B]", // Gold
     href: "/services#kundli",
   },
   {
@@ -19,7 +19,7 @@ const services = [
     titleHi: "कुंडली मिलान",
     description: "Comprehensive compatibility analysis for marriage.",
     featured: true,
-    color: "from-pink-500 to-rose-500",
+    color: "from-[#FF9933] to-[#FF4500]", // Saffron
     href: "/services#matchmaking",
   },
   {
@@ -27,7 +27,7 @@ const services = [
     title: "Daily Horoscope",
     titleHi: "दैनिक राशिफल",
     description: "Personalized daily, weekly, and monthly predictions.",
-    color: "from-indigo-500 to-purple-500",
+    color: "from-[#8B4513] to-[#4A0E0E]", // Earth
     href: "/services#horoscope",
   },
   {
@@ -35,7 +35,7 @@ const services = [
     title: "Gemstone Advice",
     titleHi: "रत्न सलाह",
     description: "Recommendations based on your planetary positions.",
-    color: "from-cyan-500 to-blue-500",
+    color: "from-[#D4AF37] to-[#FF9933]", // Gold-Saffron
     href: "/services#gemstone",
   },
   {
@@ -43,7 +43,7 @@ const services = [
     title: "Vastu Consultation",
     titleHi: "वास्तु परामर्श",
     description: "Harmonize your living and working spaces.",
-    color: "from-green-500 to-emerald-500",
+    color: "from-[#B8860B] to-[#4A0E0E]", // Dark Gold
     href: "/services#vastu",
   },
   {
@@ -51,7 +51,7 @@ const services = [
     title: "Numerology",
     titleHi: "अंक ज्योतिष",
     description: "Discover the power of numbers in your life.",
-    color: "from-violet-500 to-purple-500",
+    color: "from-[#FFD700] to-[#DAA520]", // Bright Gold
     href: "/services#numerology",
   },
   {
@@ -59,7 +59,7 @@ const services = [
     title: "Muhurat Selection",
     titleHi: "मुहूर्त चयन",
     description: "Find auspicious timings for important events.",
-    color: "from-amber-500 to-yellow-500",
+    color: "from-[#D4AF37] to-[#B8860B]", // Gold
     href: "/services#muhurat",
   },
   {
@@ -67,7 +67,7 @@ const services = [
     title: "Career Guidance",
     titleHi: "करियर मार्गदर्शन",
     description: "Navigate your professional path with cosmic insights.",
-    color: "from-blue-500 to-indigo-500",
+    color: "from-[#FF9933] to-[#FF4500]", // Saffron
     href: "/services#career",
   },
 ]
@@ -96,7 +96,7 @@ export function ServicesSection() {
             <Link
               key={index}
               href={service.href}
-              className={`group relative bg-card border border-border/50 rounded-2xl p-6 hover:border-saffron/40 hover:shadow-xl hover:shadow-saffron/5 transition-all duration-500 cursor-pointer overflow-hidden ${service.featured ? "lg:col-span-2 lg:row-span-2" : ""
+              className={`group relative bg-[#1A0F0D]/60 backdrop-blur-md border border-[#D4AF37]/20 rounded-2xl p-6 hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] transition-all duration-500 cursor-pointer overflow-hidden ${service.featured ? "lg:col-span-2 lg:row-span-2" : ""
                 }`}
             >
               {/* Gradient background on hover */}
@@ -105,28 +105,28 @@ export function ServicesSection() {
               />
 
               {/* Icon */}
-              <div className={`relative mb-4 ${service.featured ? "text-5xl" : "text-3xl"}`}>{service.icon}</div>
+              <div className={`relative mb-4 ${service.featured ? "text-5xl" : "text-3xl"} text-[#D4AF37]`}>{service.icon}</div>
 
               {/* Content */}
               <div className="relative">
-                <h3 className={`font-semibold mb-1 ${service.featured ? "text-2xl" : "text-base"}`}>{service.title}</h3>
-                <p className={`text-saffron/70 mb-3 ${service.featured ? "text-base" : "text-xs"}`}>
+                <h3 className={`font-serif text-[#F5E6D3] mb-1 ${service.featured ? "text-2xl" : "text-base"}`}>{service.title}</h3>
+                <p className={`text-[#D4AF37]/80 mb-3 ${service.featured ? "text-base" : "text-xs"}`}>
                   {service.titleHi}
                 </p>
-                <p className={`text-muted-foreground leading-relaxed ${service.featured ? "text-base" : "text-sm"}`}>
+                <p className={`text-[#F5E6D3]/70 leading-relaxed ${service.featured ? "text-base" : "text-sm"}`}>
                   {service.description}
                 </p>
               </div>
 
               {/* Arrow */}
-              <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-muted flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-saffron">
-                <ArrowUpRight className="w-4 h-4 group-hover:text-white transition-colors" />
+              <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-[#D4AF37]/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-[#D4AF37]">
+                <ArrowUpRight className="w-4 h-4 text-[#D4AF37] group-hover:text-[#1A0F0D] transition-colors" />
               </div>
 
               {/* Featured badge */}
               {service.featured && (
                 <div className="absolute bottom-6 right-6">
-                  <span className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-saffron/20 to-gold/20 text-saffron font-medium border border-saffron/20">
+                  <span className="text-xs px-3 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] font-medium border border-[#D4AF37]/20">
                     Popular
                   </span>
                 </div>

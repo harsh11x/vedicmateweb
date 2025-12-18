@@ -17,7 +17,7 @@ const pandits = [
     specializations: ["Kundli Analysis", "Marriage Matching", "Life Predictions"],
     languages: ["Hindi", "English", "Sanskrit"],
     avatar: "RS",
-    gradient: "from-orange-500 to-red-500",
+    gradient: "from-[#D4AF37] to-[#B8860B]", // Gold
     gender: "male" as const,
   },
   {
@@ -31,7 +31,7 @@ const pandits = [
     specializations: ["Numerology", "Vastu", "Gemstones"],
     languages: ["Hindi", "English", "Tamil"],
     avatar: "MD",
-    gradient: "from-pink-500 to-rose-500",
+    gradient: "from-[#FF9933] to-[#FF4500]", // Saffron
     gender: "female" as const,
   },
   {
@@ -45,7 +45,7 @@ const pandits = [
     specializations: ["Career Guidance", "Financial Astrology", "Muhurat"],
     languages: ["Hindi", "English", "Gujarati"],
     avatar: "AV",
-    gradient: "from-blue-500 to-indigo-500",
+    gradient: "from-[#8B4513] to-[#4A0E0E]", // Earth/Maroon
     gender: "male" as const,
   },
   {
@@ -59,7 +59,7 @@ const pandits = [
     specializations: ["Love & Relationships", "Health", "Child Predictions"],
     languages: ["Hindi", "English", "Marathi"],
     avatar: "LS",
-    gradient: "from-purple-500 to-pink-500",
+    gradient: "from-[#D4AF37] to-[#FF9933]", // Gold-Saffron
     gender: "female" as const,
   },
   {
@@ -73,7 +73,7 @@ const pandits = [
     specializations: ["Vedic Rituals", "Mantras", "Spiritual Enlightenment"],
     languages: ["Hindi", "Sanskrit", "Telugu"],
     avatar: "SN",
-    gradient: "from-amber-500 to-orange-500",
+    gradient: "from-[#B8860B] to-[#4A0E0E]", // Antique Gold/Dark
     gender: "male" as const,
   },
   {
@@ -87,7 +87,7 @@ const pandits = [
     specializations: ["Daily Horoscope", "Transit Analysis", "Dasha Predictions"],
     languages: ["Hindi", "English", "Kannada"],
     avatar: "PV",
-    gradient: "from-teal-500 to-cyan-500",
+    gradient: "from-[#FFD700] to-[#DAA520]", // Bright Gold
     gender: "female" as const,
   },
 ]
@@ -151,7 +151,7 @@ export function PanditsSection() {
           {visiblePandits.map((pandit) => (
             <div
               key={pandit.id}
-              className="group bg-card border border-border/50 rounded-2xl p-6 hover:shadow-2xl hover:shadow-saffron/10 hover:border-saffron/30 transition-all duration-500 relative overflow-hidden"
+              className="group bg-[#1A0F0D]/60 backdrop-blur-md border border-[#D4AF37]/20 rounded-2xl p-6 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] hover:border-[#D4AF37]/50 transition-all duration-500 relative overflow-hidden"
             >
               {/* Background gradient on hover */}
               <div
@@ -170,9 +170,9 @@ export function PanditsSection() {
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-lg truncate">{pandit.name}</h3>
-                  <p className="text-xs text-saffron/70">{pandit.nameHi}</p>
-                  <p className="text-sm text-muted-foreground mt-0.5">{pandit.title}</p>
+                  <h3 className="font-serif text-lg text-[#F5E6D3] truncate">{pandit.name}</h3>
+                  <p className="text-xs text-[#D4AF37]">{pandit.nameHi}</p>
+                  <p className="text-sm text-[#F5E6D3]/70 mt-0.5">{pandit.title}</p>
                 </div>
                 <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-amber-500/10">
                   <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
@@ -181,27 +181,27 @@ export function PanditsSection() {
               </div>
 
               {/* Stats */}
-              <div className="flex items-center gap-4 mb-5 py-4 border-y border-border/50 relative">
+              <div className="flex items-center gap-4 mb-5 py-4 border-y border-[#D4AF37]/10 relative">
                 <div className="flex-1 text-center">
-                  <p className="text-xl font-bold">{pandit.experience}+</p>
-                  <p className="text-xs text-muted-foreground">Years Exp</p>
+                  <p className="text-xl font-bold text-[#F5E6D3]">{pandit.experience}+</p>
+                  <p className="text-xs text-[#D4AF37]/70">Years Exp</p>
                 </div>
-                <div className="w-px h-10 bg-border" />
+                <div className="w-px h-10 bg-[#D4AF37]/10" />
                 <div className="flex-1 text-center">
-                  <p className="text-xl font-bold">{(pandit.consultations / 1000).toFixed(0)}K</p>
-                  <p className="text-xs text-muted-foreground">Sessions</p>
+                  <p className="text-xl font-bold text-[#F5E6D3]">{(pandit.consultations / 1000).toFixed(0)}K</p>
+                  <p className="text-xs text-[#D4AF37]/70">Sessions</p>
                 </div>
-                <div className="w-px h-10 bg-border" />
+                <div className="w-px h-10 bg-[#D4AF37]/10" />
                 <div className="flex-1 text-center">
-                  <p className="text-xl font-bold">{pandit.languages.length}</p>
-                  <p className="text-xs text-muted-foreground">Languages</p>
+                  <p className="text-xl font-bold text-[#F5E6D3]">{pandit.languages.length}</p>
+                  <p className="text-xs text-[#D4AF37]/70">Languages</p>
                 </div>
               </div>
 
               {/* Specializations */}
               <div className="flex flex-wrap gap-2 mb-6 relative">
                 {pandit.specializations.map((spec) => (
-                  <span key={spec} className="text-xs px-2.5 py-1 rounded-full bg-muted text-muted-foreground">
+                  <span key={spec} className="text-xs px-2.5 py-1 rounded-full bg-[#D4AF37]/10 text-[#F5E6D3]/80 border border-[#D4AF37]/10">
                     {spec}
                   </span>
                 ))}
@@ -218,7 +218,7 @@ export function PanditsSection() {
                     Chat Now
                   </Link>
                 </Button>
-                <Button variant="outline" className="h-11 px-4 bg-transparent hover:bg-muted" asChild>
+                <Button variant="outline" className="h-11 px-4 bg-transparent border-[#D4AF37]/30 text-[#D4AF37] hover:bg-[#D4AF37]/10 hover:text-[#FFD700]" asChild>
                   <Link href={`/pandits?call=${pandit.id}`}>
                     <Phone className="w-4 h-4" />
                   </Link>

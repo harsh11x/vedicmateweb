@@ -13,7 +13,7 @@ const testimonials = [
     text: "Pandit Rajesh Shastri's guidance was incredible. His kundli analysis was spot-on. Felt like talking to a real pandit!",
     textHi: "पंडित राजेश शास्त्री का मार्गदर्शन अविश्वसनीय था। असली पंडित से बात करने जैसा लगा!",
     lang: "Hindi",
-    gradient: "from-orange-500 to-red-500",
+    gradient: "from-[#D4AF37] to-[#B8860B]", // Gold
   },
   {
     name: "Karthik Iyer",
@@ -23,7 +23,7 @@ const testimonials = [
     text: "Amazing that I could consult in Tamil! The pandit understood everything perfectly. Highly recommended!",
     textHi: "தமிழில் ஆலோசனை பெற்றது மிகவும் நன்றாக இருந்தது!",
     lang: "Tamil",
-    gradient: "from-blue-500 to-purple-500",
+    gradient: "from-[#FF9933] to-[#FF4500]", // Saffron
   },
   {
     name: "Amit Patel",
@@ -33,7 +33,7 @@ const testimonials = [
     text: "24/7 availability changed my life. Got guidance at 2 AM when I needed it most. Thank you Vedic Mate!",
     textHi: "૨૪/૭ ઉપલબ્ધતાએ મારું જીવન બદલી નાખ્યું!",
     lang: "Gujarati",
-    gradient: "from-green-500 to-teal-500",
+    gradient: "from-[#8B4513] to-[#4A0E0E]", // Earth
   },
   {
     name: "Lakshmi Reddy",
@@ -43,7 +43,7 @@ const testimonials = [
     text: "Speaking in Telugu made the consultation so comfortable. The predictions were surprisingly accurate!",
     textHi: "తెలుగులో మాట్లాడటం చాలా సౌకర్యంగా ఉంది!",
     lang: "Telugu",
-    gradient: "from-pink-500 to-rose-500",
+    gradient: "from-[#D4AF37] to-[#FF9933]", // Gold-Saffron
   },
 ]
 
@@ -79,16 +79,16 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="group relative bg-card rounded-2xl p-6 md:p-8 border border-border/50 hover:border-saffron/30 hover:shadow-xl hover:shadow-saffron/5 transition-all duration-500"
+              className="group relative bg-[#1A0F0D]/60 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-[#D4AF37]/20 hover:border-[#D4AF37]/50 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] transition-all duration-500"
             >
               {/* Quote icon */}
-              <Quote className="absolute top-6 right-6 w-10 h-10 text-saffron/10 group-hover:text-saffron/20 transition-colors" />
+              <Quote className="absolute top-6 right-6 w-10 h-10 text-[#D4AF37]/10 group-hover:text-[#D4AF37]/20 transition-colors" />
 
               {/* Rating & Language */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-1">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
                   ))}
                 </div>
                 <span
@@ -99,8 +99,8 @@ export function TestimonialsSection() {
               </div>
 
               {/* Quote */}
-              <p className="text-foreground leading-relaxed mb-3">"{testimonial.text}"</p>
-              <p className="text-sm text-saffron/70 mb-6 font-medium">{testimonial.textHi}</p>
+              <p className="text-[#F5E6D3] leading-relaxed mb-3">"{testimonial.text}"</p>
+              <p className="text-sm text-[#D4AF37]/70 mb-6 font-medium">{testimonial.textHi}</p>
 
               {/* Author */}
               <div className="flex items-center gap-4">
@@ -110,8 +110,8 @@ export function TestimonialsSection() {
                   <span className="text-white font-bold">{testimonial.name.charAt(0)}</span>
                 </div>
                 <div>
-                  <p className="font-semibold">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                  <p className="font-serif font-semibold text-[#F5E6D3]">{testimonial.name}</p>
+                  <p className="text-sm text-[#F5E6D3]/60">{testimonial.location}</p>
                 </div>
               </div>
             </div>
