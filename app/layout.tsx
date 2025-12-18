@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Hind_Madurai, Tiro_Devanagari_Sanskrit } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { TempleDoors } from "@/components/temple-doors"
+import { AuthProvider } from "@/components/auth-context"
 import "./globals.css"
 
 const hindMadurai = Hind_Madurai({
@@ -45,8 +46,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${hindMadurai.variable} ${tiroDevanagari.variable} font-sans`}>
-        <TempleDoors />
-        {children}
+        <AuthProvider>
+          <TempleDoors />
+          {children}
+        </AuthProvider>
         <Analytics />
       </body>
     </html>
