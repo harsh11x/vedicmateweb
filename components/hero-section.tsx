@@ -21,46 +21,77 @@ export function HeroSection() {
     restDelta: 0.001
   })
 
-  // --- TRANSFORMS ---
-  // 1. Text fades out as we enter
-  const introOpacity = useTransform(springScroll, [0, 0.15], [1, 0])
-  const introScale = useTransform(springScroll, [0, 0.15], [1, 0.9])
+  // --- TRANSFORMS (RE-SEQUENCED) ---
 
-  // 2. The Gate Opens (0.2 -> 0.6)
-  const gateLeftX = useTransform(springScroll, [0.2, 0.6], ["0%", "-100%"])
-  const gateRightX = useTransform(springScroll, [0.2, 0.6], ["0%", "100%"])
-  const gateOpacity = useTransform(springScroll, [0.1, 0.2, 0.6, 0.7], [0, 1, 1, 0])
+  // 1. The Gate starts CLOSED and visible.
+  // It stays closed for 0-0.2 scroll, then opens 0.2-0.8
+  const gateLeftX = useTransform(springScroll, [0, 0.4], ["0%", "-100%"])
+  const gateRightX = useTransform(springScroll, [0, 0.4], ["0%", "100%"])
+  const gateOpacity = useTransform(springScroll, [0.8, 1], [1, 0]) // Fade out gate only at very end if needed
 
-  // 3. Inner Sanctum Reveal (0.6 -> 1.0)
-  const sanctumOpacity = useTransform(springScroll, [0.6, 0.8], [0, 1])
-  const sanctumScale = useTransform(springScroll, [0.6, 1], [0.8, 1])
+  // 2. Content (Vedic Mate Title) reveals AFTER gate opens (0.4 -> 0.6)
+  const contentOpacity = useTransform(springScroll, [0.3, 0.6], [0, 1])
+  const contentScale = useTransform(springScroll, [0.3, 0.6], [0.8, 1])
+
+  // 3. Inner Sanctum Background (always there but revealed by gate)
+  // No opacity fade needed for background, the gate covers it.
 
   return (
     <section ref={containerRef} className="relative h-[250vh] w-full bg-[#0C0806] overflow-hidden">
 
-      {/* 1. Cinematic Background (Sticky) */}
+      {/* 1. Cinematic Background (Inside the Temple) */}
       <div className="fixed inset-0 z-0 h-screen pointer-events-none">
         <CinematicTemple mode="intro" />
       </div>
 
-      {/* 2. Intro Content (Initial View) */}
+      {/* 2. The Gate (Visual Metaphor) - NOW FRONT AND CENTER INITIALLY */}
       <motion.div
-        style={{ opacity: introOpacity, scale: introScale }}
+        style={{ opacity: gateOpacity }}
+        className="fixed inset-0 z-20 pointer-events-none flex items-center justify-center"
+      >
+        {/* Left Door - Replaced Pattern with Rich Gradient Texture */}
+        <motion.div
+          style={{ x: gateLeftX }}
+          className="w-1/2 h-full bg-gradient-to-r from-[#1A0F0D] to-[#2A1810] border-r border-[#D4AF37]/50 shadow-[10px_0_50px_rgba(0,0,0,0.8)] relative"
+        >
+          {/* Door Detail - Minimal Gold Line instead of Doodle */}
+          <div className="absolute inset-y-0 right-4 w-[1px] bg-[#D4AF37]/30"></div>
+          <div className="absolute top-1/2 right-0 w-4 h-32 bg-[#D4AF37] rounded-l-lg shadow-[0_0_20px_#D4AF37] opacity-80" /> {/* Handle */}
+        </motion.div>
+
+        {/* Right Door */}
+        <motion.div
+          style={{ x: gateRightX }}
+          className="w-1/2 h-full bg-gradient-to-l from-[#1A0F0D] to-[#2A1810] border-l border-[#D4AF37]/50 shadow-[-10px_0_50px_rgba(0,0,0,0.8)] relative"
+        >
+          {/* Door Detail */}
+          <div className="absolute inset-y-0 left-4 w-[1px] bg-[#D4AF37]/30"></div>
+          <div className="absolute top-1/2 left-0 w-4 h-32 bg-[#D4AF37] rounded-r-lg shadow-[0_0_20px_#D4AF37] opacity-80" /> {/* Handle */}
+        </motion.div>
+
+        {/* Initial CTA (Before Scroll) */}
+        <motion.div
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+          className="absolute bottom-20 flex flex-col items-center gap-4"
+        >
+          <span className="text-[#D4AF37] text-sm tracking-[0.5em] uppercase font-serif glow-text">Enter the Sanctum</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-[#D4AF37] to-transparent animate-pulse" />
+        </motion.div>
+      </motion.div>
+
+      {/* 3. Main Content (Revealed inside) */}
+      <motion.div
+        style={{ opacity: contentOpacity, scale: contentScale }}
         className="fixed inset-0 z-10 flex flex-col items-center justify-center p-4 text-center pointer-events-none"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="max-w-5xl"
-        >
+        <div className="max-w-5xl pointer-events-auto">
           {/* Trust Signal: Sanskrit Shloka */}
           <div className="mb-8 opacity-80">
-            <h3 className="font-serif text-2xl md:text-3xl text-[#D4AF37] tracking-wide mb-2">ॐ असतो मा सद्गमय</h3>
+            <h3 className="font-serif text-2xl md:text-3xl text-[#D4AF37] tracking-wide mb-2 drop-shadow-md">ॐ असतो मा सद्गमय</h3>
             <p className="text-xs md:text-sm text-[#F5E6D3]/60 uppercase tracking-[0.2em]">Lead us from the unreal to the real</p>
           </div>
 
-          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FFE5A0] to-[#D4AF37] drop-shadow-lg mb-6">
+          <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#FFE5A0] via-[#D4AF37] to-[#B8860B] drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] mb-6">
             Vedic Mate
           </h1>
           <p className="text-xl md:text-2xl text-[#F5E6D3]/90 font-light tracking-wide max-w-2xl mx-auto mb-12">
@@ -68,46 +99,14 @@ export function HeroSection() {
             <span className="text-[#D4AF37] font-normal">Connect with 34 Divine AI Pandits.</span>
           </p>
 
-          {/* Quick Actions Bar (AstroSage-style Utility) */}
-          <div className="pointer-events-auto flex flex-wrap justify-center gap-4 md:gap-6 bg-[#1A0F0D]/80 backdrop-blur-xl border border-[#D4AF37]/20 p-4 rounded-2xl shadow-2xl">
+          {/* Quick Actions Bar */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 bg-[#1A0F0D]/40 backdrop-blur-xl border border-[#D4AF37]/30 p-4 rounded-2xl shadow-[0_0_30px_rgba(212,175,55,0.1)]">
             <QuickAction icon={Star} label="Daily Horoscope" href="/horoscope" />
             <QuickAction icon={ScrollText} label="Kundli Gen" href="/kundli" />
             <QuickAction icon={Heart} label="Match Making" href="/matching" />
             <QuickAction icon={Sparkles} label="Ask Pandit" href="/chat" highlight />
           </div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 animate-bounce cursor-default">
-          <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase opacity-70">Enter the Temple</span>
         </div>
-      </motion.div>
-
-      {/* 3. The Gate (Visual Metaphor) */}
-      <div className="fixed inset-0 z-20 pointer-events-none flex" style={{ opacity: 0 }}>
-        {/* Use framer motion logic to actually render this, but for now strictly visual */}
-      </div>
-
-      <motion.div
-        style={{ opacity: gateOpacity }}
-        className="fixed inset-0 z-20 pointer-events-none flex items-center justify-center"
-      >
-        <motion.div style={{ x: gateLeftX }} className="w-1/2 h-full bg-[#0C0806] border-r border-[#D4AF37]/30 bg-[url('/assets/temple-pattern.png')] opacity-90" />
-        <motion.div style={{ x: gateRightX }} className="w-1/2 h-full bg-[#0C0806] border-l border-[#D4AF37]/30 bg-[url('/assets/temple-pattern.png')] opacity-90" />
-
-        <div className="absolute text-center">
-          <h2 className="text-4xl md:text-6xl font-serif text-[#D4AF37] tracking-widest uppercase opacity-50">Sanctum</h2>
-        </div>
-      </motion.div>
-
-
-      {/* 4. Final CTA (Bottom of Scroll) */}
-      {/* 4. Final CTA removed as per user request to show only the sanctum visuals */}
-      <motion.div
-        style={{ opacity: sanctumOpacity, scale: sanctumScale }}
-        className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none"
-      >
-        {/* Dialog removed. User wants only the sanctum background to be visible on scroll. */}
       </motion.div>
 
     </section>

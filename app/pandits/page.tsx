@@ -61,7 +61,8 @@ export default function PanditsPage() {
 
       {/* Hero */}
       <section className="pt-24 pb-12 relative overflow-hidden">
-        <DecorativeMandala className="absolute top-0 right-0 w-[500px] h-[500px] opacity-[0.03] pointer-events-none" />
+        {/* DecorativeMandala removed for realistic aesthetic */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#FFD700]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
         <div className="w-full px-4 md:px-8 lg:px-12">
           <div className="max-w-3xl">
             <span className="inline-block text-saffron text-sm font-medium mb-4">AI Pandits • AI पंडित</span>
