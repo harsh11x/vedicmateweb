@@ -1,41 +1,63 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from "react"
+import { auth, googleProvider } from "@/lib/firebase"
+import {
+    onAuthStateChanged,
+    signInWithPopup,
+    signOut as firebaseSignOut,
+    User
+} from "firebase/auth"
 
 interface AuthContextType {
+    user: User | null
     isAuthenticated: boolean
     isLoading: boolean
-    login: () => void
-    logout: () => void
+    loginWithGoogle: () => Promise<void>
+    login: () => void // Kept for backward warning
+    logout: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [user, setUser] = useState<User | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        // Simulated session check
-        const storedAuth = localStorage.getItem("vedic_auth_token")
-        if (storedAuth) {
-            setIsAuthenticated(true)
-        }
-        setIsLoading(false)
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+            setIsLoading(false)
+        })
+        return () => unsubscribe()
     }, [])
 
-    const login = () => {
-        localStorage.setItem("vedic_auth_token", "demo_token_123")
-        setIsAuthenticated(true)
+    const loginWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth, googleProvider)
+        } catch (error) {
+            console.error("Login failed", error)
+            throw error
+        }
     }
 
-    const logout = () => {
-        localStorage.removeItem("vedic_auth_token")
-        setIsAuthenticated(false)
+    const login = () => {
+        console.warn("Use loginWithGoogle instead")
+    }
+
+    const logout = async () => {
+        await firebaseSignOut(auth)
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout }}>
+        <AuthContext.Provider value={{
+            user,
+            isAuthenticated: !!user,
+            isLoading,
+            loginWithGoogle,
+            login,
+            logout
+        }}>
             {children}
         </AuthContext.Provider>
     )
