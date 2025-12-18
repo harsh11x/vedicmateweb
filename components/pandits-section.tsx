@@ -108,7 +108,7 @@ export function PanditsSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
-            <span className="inline-block text-[#D4AF37] text-sm font-medium mb-4">
+            <span className="inline-block text-[#F5E6D3] text-sm font-medium mb-4 tracking-wide opacity-90">
               Meet Our Pandits • हमारे पंडितों से मिलें
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold mb-4 text-[#F5E6D3]">
