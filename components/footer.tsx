@@ -77,7 +77,7 @@ export function Footer() {
       <div className="container mx-auto px-6 mt-16 pt-8 border-t border-[#D4AF37]/10 flex flex-col md:flex-row justify-between items-center text-xs text-[#F5E6D3] opacity-80">
         <p>© 2025 Vedic Mate. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
-          <Link href="/privacy" className="hover:text-[#D4AF37]">Privacy Policy</Link>
+          <Link href="/privacypolicy" className="hover:text-[#D4AF37]">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-[#D4AF37]">Terms of Service</Link>
         </div>
       </div>
