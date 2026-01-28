@@ -44,7 +44,7 @@ export default function RefundPage() {
                 <section>
                   <h2 className="text-2xl font-semibold mb-4">4. How to Request a Refund</h2>
                   <p className="text-muted-foreground">
-                    To request a refund, please email us at refunds@vedicmate.com with your account details and reason
+                    To request a refund, please email us at vedicmate@gmail.com with your account details and reason
                     for the refund. We will process your request within 5-7 business days.
                   </p>
                 </section>
@@ -60,7 +60,7 @@ export default function RefundPage() {
                 <section>
                   <h2 className="text-2xl font-semibold mb-4">6. Contact</h2>
                   <p className="text-muted-foreground">
-                    For any questions about refunds, please contact us at support@vedicmate.com or call our toll-free
+                    For any questions about refunds, please contact us at vedicmate@gmail.com or call our toll-free
                     number: 1800-XXX-XXXX.
                   </p>
                 </section>

@@ -20,7 +20,7 @@ export default function ContactPage() {
                         <div className="space-y-4 mt-8">
                             <div className="flex items-center gap-4 text-[#F5E6D3]">
                                 <Mail className="w-5 h-5 text-[#D4AF37]" />
-                                <span>pandits@vedicmate.com</span>
+                                <span>vedicmate@gmail.com</span>
                             </div>
                             <div className="flex items-center gap-4 text-[#F5E6D3]">
                                 <Phone className="w-5 h-5 text-[#D4AF37]" />

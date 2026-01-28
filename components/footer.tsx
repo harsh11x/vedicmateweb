@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react"
 
+
 export function Footer() {
   return (
     <footer className="bg-[#1A0F0D] text-[#F5E6D3]/90 relative border-t border-[#D4AF37]/20 pt-20 pb-10">
@@ -21,53 +22,55 @@ export function Footer() {
             Blending ancient scripture with modern intelligence.
           </p>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 mb-6">
             <SocialIcon icon={Facebook} />
             <SocialIcon icon={Twitter} />
             <SocialIcon icon={Instagram} />
             <SocialIcon icon={Youtube} />
           </div>
-        </div>
 
-        {/* Quick Links (AstroSage Density) */}
-        <div>
-          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Astro Services</h4>
-          <ul className="space-y-3">
-            <FooterLink href="/horoscope">Daily Horoscope</FooterLink>
-            <FooterLink href="/kundli">Free Kundli</FooterLink>
-            <FooterLink href="/matching">Gun Milan / Matching</FooterLink>
-            <FooterLink href="/panchang">Today's Panchang</FooterLink>
-            <FooterLink href="/calendar">Hindu Calendar 2025</FooterLink>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Vedic Tools</h4>
-          <ul className="space-y-3">
-            <FooterLink href="/gemstones">Gemstone Suggestion</FooterLink>
-            <FooterLink href="/rudraksha">Rudraksha Guide</FooterLink>
-            <FooterLink href="/numerology">Numerology Report</FooterLink>
-            <FooterLink href="/tarot">AI Tarot Reading</FooterLink>
-            <FooterLink href="/vastu">Vastu Compass</FooterLink>
-          </ul>
-        </div>
-
-        {/* Contact / Trust */}
-        <div>
-          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Sanctum Support</h4>
           <ul className="space-y-4">
             <li className="flex items-start gap-3">
               <MapPin className="w-5 h-5 text-[#D4AF37] shrink-0" />
               <span className="text-[#F5E6D3]">Vedic Research Inst, Varanasi, India</span>
             </li>
             <li className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-[#D4AF37] shrink-0" />
-              <span className="text-[#F5E6D3]">+91 98765 43210</span>
-            </li>
-            <li className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-[#D4AF37] shrink-0" />
-              <Link href="/contact" className="text-[#F5E6D3] hover:text-[#D4AF37] transition-colors">pandits@vedicmate.com</Link>
+              <Link href="mailto:vedicmate@gmail.com" className="text-[#F5E6D3] hover:text-[#D4AF37] transition-colors">vedicmate@gmail.com</Link>
             </li>
+          </ul>
+        </div>
+
+        {/* Legal */}
+        <div>
+          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Legal</h4>
+          <ul className="space-y-3">
+            <FooterLink href="/terms">Terms & Conditions</FooterLink>
+            <FooterLink href="/privacypolicy">Privacy Policy</FooterLink>
+            <FooterLink href="/cookies">Cookie Policy</FooterLink>
+            <FooterLink href="/refund">Refund Policy</FooterLink>
+            <FooterLink href="/disclaimer">Disclaimer</FooterLink>
+          </ul>
+        </div>
+
+        {/* Company / Trust */}
+        <div>
+          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Company</h4>
+          <ul className="space-y-3">
+            <FooterLink href="/about">About Us</FooterLink>
+            <FooterLink href="/contact">Contact Us</FooterLink>
+            <FooterLink href="/press">Press / Media</FooterLink>
+            {/* <FooterLink href="/testimonials">Testimonials</FooterLink> */}
+          </ul>
+        </div>
+
+        {/* Support */}
+        <div>
+          <h4 className="text-[#F5E6D3] font-serif font-medium mb-6 uppercase tracking-widest text-xs opacity-80">Support</h4>
+          <ul className="space-y-3">
+            <FooterLink href="/help">Help Center</FooterLink>
+            <FooterLink href="/faq">FAQs</FooterLink>
+            <FooterLink href="/abuse">Report Abuse</FooterLink>
             <li className="mt-4">
               <Link href="/contact" className="text-sm text-[#D4AF37] underline hover:text-[#Fdb931]">Contact Support</Link>
             </li>
@@ -79,12 +82,6 @@ export function Footer() {
       {/* Bottom Legal Bar */}
       <div className="container mx-auto px-6 mt-16 pt-8 border-t border-[#D4AF37]/10 flex flex-col md:flex-row justify-between items-center text-xs text-[#F5E6D3] opacity-80">
         <p>© 2025 Vedic Mate. All rights reserved.</p>
-        <div className="flex gap-6 mt-4 md:mt-0">
-          <Link href="/about" className="hover:text-[#D4AF37]">About Us</Link>
-          <Link href="/refund" className="hover:text-[#D4AF37]">Refund Policy</Link>
-          <Link href="/privacypolicy" className="hover:text-[#D4AF37]">Privacy Policy</Link>
-          <Link href="/terms" className="hover:text-[#D4AF37]">Terms of Service</Link>
-        </div>
       </div>
     </footer>
   )
@@ -107,3 +104,4 @@ function SocialIcon({ icon: Icon }: { icon: any }) {
     </Link>
   )
 }
+
