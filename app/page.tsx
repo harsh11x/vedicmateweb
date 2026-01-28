@@ -5,7 +5,7 @@ import { PanditsSection } from "@/components/pandits-section"
 import { ServicesSection } from "@/components/services-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { DownloadSection } from "@/components/download-section"
-import { DownloadSection } from "@/components/download-section"
+
 
 export default function Home() {
   return (
