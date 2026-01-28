@@ -3,7 +3,7 @@ import { DecorativeMandala } from "@/components/illustrations/decorative-mandala
 
 export default function RefundPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-[#0C0806]">
 
 
       <section className="pt-24 pb-12 relative overflow-hidden">

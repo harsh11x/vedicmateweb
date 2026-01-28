@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-[#0C0806]">
 
 
       {/* Hero */}
