@@ -1,12 +1,11 @@
 "use client"
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+
 
 export default function PrivacyPolicy() {
   return (
     <main className="min-h-screen bg-background paper-texture text-[#1A0F0D]">
-      <Header />
+
 
       <div className="container mx-auto px-6 py-32 md:py-40 max-w-4xl">
         <h1 className="font-serif text-4xl md:text-5xl text-[#B8860B] mb-4">Privacy Policy for Vedic Mate</h1>
@@ -127,7 +126,7 @@ export default function PrivacyPolicy() {
         </div>
       </div>
 
-      <Footer />
+
     </main>
   )
 }

@@ -66,7 +66,10 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-[#D4AF37] shrink-0" />
-              <span className="text-[#F5E6D3]">pandits@vedicmate.com</span>
+              <Link href="/contact" className="text-[#F5E6D3] hover:text-[#D4AF37] transition-colors">pandits@vedicmate.com</Link>
+            </li>
+            <li className="mt-4">
+              <Link href="/contact" className="text-sm text-[#D4AF37] underline hover:text-[#Fdb931]">Contact Support</Link>
             </li>
           </ul>
         </div>
@@ -77,6 +80,8 @@ export function Footer() {
       <div className="container mx-auto px-6 mt-16 pt-8 border-t border-[#D4AF37]/10 flex flex-col md:flex-row justify-between items-center text-xs text-[#F5E6D3] opacity-80">
         <p>© 2025 Vedic Mate. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
+          <Link href="/about" className="hover:text-[#D4AF37]">About Us</Link>
+          <Link href="/refund" className="hover:text-[#D4AF37]">Refund Policy</Link>
           <Link href="/privacypolicy" className="hover:text-[#D4AF37]">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-[#D4AF37]">Terms of Service</Link>
         </div>

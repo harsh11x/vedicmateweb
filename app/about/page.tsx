@@ -1,5 +1,4 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+
 import { Button } from "@/components/ui/button"
 import { Users, Globe, Clock, Heart, ArrowRight } from "lucide-react"
 import { DecorativeMandala } from "@/components/illustrations/decorative-mandala"
@@ -9,7 +8,7 @@ import Link from "next/link"
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Header />
+
 
       {/* Hero */}
       <section className="pt-24 pb-12 relative overflow-hidden">
@@ -122,7 +121,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
+
     </main>
   )
 }

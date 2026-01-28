@@ -1,11 +1,10 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+
 import { DecorativeMandala } from "@/components/illustrations/decorative-mandala"
 
 export default function RefundPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Header />
+
 
       <section className="pt-24 pb-12 relative overflow-hidden">
         <DecorativeMandala className="absolute top-0 right-0 w-[400px] h-[400px] opacity-[0.03] pointer-events-none" />
@@ -71,7 +70,7 @@ export default function RefundPage() {
         </div>
       </section>
 
-      <Footer />
+
     </main>
   )
 }
